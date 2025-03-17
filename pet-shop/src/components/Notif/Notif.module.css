@@ -1,0 +1,43 @@
+.notification {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #28282866;
+  transition: 0.3s width ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification > .message {
+  max-width: 548px;
+  background-color: #0d50ff;
+  color: white;
+  padding: 32px;
+  border-radius: 12px;
+  display: flex;
+  align-items: start;
+}
+
+.notification > .message > .text > span {
+  font-weight: 600;
+  font-size: 40px;
+  color: white;
+}
+
+.notification > .message > .text > p {
+  font-weight: 600;
+  margin-top: 24px;
+  line-height: 22px;
+  color: white;
+  white-space: pre-wrap;
+}
+
+.notification > .message > button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}

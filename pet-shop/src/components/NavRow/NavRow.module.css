@@ -1,0 +1,18 @@
+.navigationRow {
+  display: flex;
+  align-items: center;
+  width: 240px;
+  max-width: 100%;
+}
+
+.navigationRow > hr {
+  color: #dddddd;
+  height: 0px;
+  width: 16px;
+}
+
+@media (max-width: 1200px) {
+  .navigationRow {
+    display: none;
+  }
+}

@@ -1,0 +1,87 @@
+.coupleSection {
+  padding: 16px;
+}
+.categoriesRenderImage {
+  border-radius: 12px;
+  width: 316px;
+  height: 350px;
+}
+
+.categoriesDesc {
+  display: flex;
+  justify-content: center;
+  font: 500 20px / 1.3 "Montserrat", sans-serif;
+  text-align: center;
+  color: #282828;
+  height: 50px;
+}
+
+.active {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+.coupleAddit {
+  font: 500 16px / 1.26 "Montserrat", sans-serif;
+  text-align: center;
+  color: #8b8b8b;
+}
+.coupleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 16px;
+  width: 142px;
+  height: 36px;
+  background: transparent;
+  cursor: pointer;
+}
+.coupleButton:hover {
+  background: #f1f3f4;
+}
+.coupleTitle {
+  font: 700 64px / 1.1 "Montserrat", sans-serif;
+  color: #282828;
+}
+
+.coupleLine {
+  border-bottom: 1px solid #dddddd;
+  width: 100%;
+  margin-left: 2%;
+}
+
+.coupleContainer {
+  display: flex;
+  align-items: center;
+}
+
+.coupleHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.coupleButtonContainer {
+  margin-top: 10px;
+}
+
+.coupleSliderWrapper {
+  margin: 0 auto;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coupleRenderList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 32px;
+}

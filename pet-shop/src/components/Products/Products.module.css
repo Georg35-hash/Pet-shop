@@ -1,0 +1,221 @@
+.productsSliderWrapper {
+  margin: 0 auto;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.productsRenderList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 32px;
+}
+
+.productsRenderItem {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  width: 326px;
+  height: 422px;
+}
+
+.productsRenderImage {
+  border-bottom: 1px solid #ddd;
+  width: 316px;
+  height: auto;
+  object-fit: cover;
+  height: 284px; /* Ограничивает максимальную высоту */
+}
+
+.productsTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 202px;
+  font: 500 20px / 1.3 "Montserrat", sans-serif;
+  text-align: center;
+  color: #282828;
+}
+
+.primaryPrice {
+  font: 600 40px / 1.1 "Montserrat", sans-serif;
+  color: #282828;
+}
+.discountBorder {
+  position: absolute;
+  width: 67px;
+  text-align: center;
+  border-radius: 6px;
+  right: 16px;
+  top: 16px;
+  background-color: #0d50ff;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 4px 8px;
+}
+.secondaryPrice {
+  font-size: 20px;
+  color: #8b8b8b;
+  font-weight: 500;
+  text-decoration: line-through;
+  margin-left: 16px;
+}
+.productsContent {
+  padding: 0px 32px 32px 32px;
+  width: 316px;
+  height: 118px;
+}
+.cartButton {
+  position: absolute;
+  top: 220px;
+  left: 16px;
+  width: 284px;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 20px;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.productsRenderItem:hover .cartButton {
+  opacity: 1;
+}
+.cartButton.added {
+  color: white;
+}
+
+.active {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+.coupleAddit {
+  font: 500 16px / 1.26 "Montserrat", sans-serif;
+  text-align: center;
+  color: #8b8b8b;
+}
+.coupleSection {
+  padding: 16px;
+}
+.coupleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 16px;
+  width: 142px;
+  height: 36px;
+  background: transparent;
+  cursor: pointer;
+}
+.coupleButton:hover {
+  background: #f1f3f4;
+}
+.coupleTitle {
+  font: 700 64px / 1.1 "Montserrat", sans-serif;
+  color: #282828;
+}
+
+.coupleLine {
+  border-bottom: 1px solid #dddddd;
+  width: 100%;
+  margin-left: 2%;
+}
+
+.coupleContainer {
+  display: flex;
+  align-items: center;
+}
+
+.coupleHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.coupleButtonContainer {
+  margin-top: 10px;
+}
+
+.coupleSliderWrapper {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.productsRenderItem {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.productsRenderItem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.discountBorder {
+  animation: popIn 0.4s ease-out;
+}
+
+.coupleSliderWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.cartButton {
+  transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.productsRenderImage {
+  animation: fadeIn 0.5s ease-in-out;
+}

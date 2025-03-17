@@ -1,0 +1,52 @@
+ul {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 32px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+a {
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+}
+.icons {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  margin: 41px 40px 39px;
+}
+
+a {
+  transition: transform 0.3s ease;
+}
+
+a:hover {
+  animation: bounce 1s ease-in-out;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: block;
+  }
+  .icons {
+    margin: 0 auto;
+    max-width: 100%;
+  }
+}

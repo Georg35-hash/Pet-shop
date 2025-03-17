@@ -1,0 +1,266 @@
+.shoppingCart {
+  padding: 0 40px;
+}
+
+.cartsContainer {
+  display: flex;
+}
+
+.titleBox {
+  display: flex;
+  margin: 40px 0 30px;
+  align-items: center;
+}
+
+.title {
+  font-family: "Montserrat";
+  font-size: clamp(20px, 6vw, 64px);
+  color: #282828;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.titleLine {
+  border-bottom: 1px solid #dddddd;
+  width: 628px;
+  margin-left: 2%;
+}
+
+.buttonBack {
+  white-space: nowrap;
+  color: #8b8b8b;
+  font-size: clamp(10px, 1.5vw, 16px);
+  font-weight: 500;
+  line-height: clamp(10px, 1.8vw, 20.16px);
+  text-align: center;
+  padding: 8px 16px;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+}
+
+.buttonBack:hover {
+  background: #f1f3f4;
+}
+.cartContainerWrap {
+  justify-content: space-between;
+  width: 100%;
+}
+.cartPageEmptyWarning {
+  display: flex;
+  margin: 10px 0 32px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: left;
+}
+
+.shoppingCartNavi {
+  width: clamp(270px, 20vw, 313px);
+  height: 58px;
+  padding: 16px 56px;
+  border-radius: 6px;
+  color: #ffffff;
+  background: #0d50ff;
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.shoppingCartNavi:hover {
+  color: #ffffff;
+}
+.cartPageContinueBtn {
+  width: clamp(270px, 20vw, 313px);
+  height: 58px;
+  padding: 16px 56px;
+  border-radius: 6px;
+  color: #ffffff;
+  background: #0d50ff;
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.cartPageContinueBtn:hover {
+  color: #ffffff;
+}
+
+.cartPageItemsBox {
+  display: flex;
+  gap: 16px;
+
+  justify-content: flex-start;
+  flex-direction: column;
+  max-width: 780px;
+}
+
+.cartPageItem {
+  display: flex;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: ease-in-out 500ms;
+}
+
+.cartPageItem:hover {
+  box-shadow: 0 0 10px 0.1px #0d50ff;
+  transform: scale(1.01);
+}
+
+.cartPageItemImg {
+  width: 200px;
+  height: 180px;
+}
+
+.cartPageItemImg img {
+  width: 200px;
+  height: 180px;
+  object-fit: cover;
+  border-right: 1px solid #dddddd;
+}
+
+.cartPageItemInfo {
+  display: flex;
+  width: 41vw;
+  justify-content: space-between;
+}
+
+.cartPageItemInfoLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cartPageItemInfoLeft h4 {
+  width: 100%;
+  font-size: clamp(13px, 1.6vw, 20px);
+  font-weight: 500;
+  line-height: 26px;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.cartPageItemInfoLeftPrice {
+  display: flex;
+  align-items: center;
+}
+
+.deleteButton {
+  border: none;
+  background: transparent;
+  margin: 0 4px;
+}
+
+.cartPageItemInfoLeftBtnCounter {
+  color: #282828;
+  display: flex;
+}
+
+.cartPageItemInfoLeftBtnCounter button {
+  width: clamp(28px, 5.5vw, 58px);
+  height: clamp(28px, 5.5vw, 58px);
+  border-radius: 6px;
+  border: 1px solid #dddddd;
+  background: transparent;
+  color: #8b8b8b;
+  font-size: 25px;
+}
+
+.cartPageItemInfoLeftBtnCounter button:hover {
+  background: #f1f3f4;
+}
+
+.cartPageItemInfoLeftBtnCounter input {
+  width: clamp(46px, 9.2vw, 96px);
+  height: clamp(28px, 5.5vw, 58px);
+  border: 1px solid #dddddd;
+  border-left: none;
+  border-right: none;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+}
+
+.cartPageItemInfoLeftPricePrice {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 22px;
+}
+
+.discountPrice {
+  font-size: clamp(25px, 3.8vw, 40px);
+  font-weight: 600;
+  line-height: 44px;
+  text-align: left;
+}
+
+.defaultPrice {
+  text-decoration: line-through;
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 500;
+  line-height: 26px;
+  text-align: left;
+  color: #8b8b8b;
+  align-self: end;
+}
+
+.cartPageItemsBoxRight {
+  background: #f1f3f4;
+  padding: 32px;
+  border-radius: 12px;
+  max-width: 548px;
+}
+
+.cartPageItemsBoxRight h3 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 44px;
+  text-align: left;
+  margin-bottom: 24px;
+  color: #282828;
+}
+
+.cartPageItemsBoxRight p {
+  color: #282828;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 52px;
+  text-align: left;
+}
+
+.totalPrice {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 70.4px;
+  text-align: left;
+  color: #282828;
+}
+
+.cartPageItemsBoxRight {
+  width: 100%;
+}
+.delButtonCont {
+  display: flex;
+  align-items: center;
+  padding: 32px;
+}
+.deleteButton {
+  width: 20px;
+  height: 20px;
+}

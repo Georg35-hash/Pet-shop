@@ -1,0 +1,93 @@
+.orderForm {
+  margin-left: 32px;
+  max-width: 548px;
+  background-color: #f1f3f4;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.orderForm > h3 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.orderForm > p {
+  font-weight: 500;
+  font-size: 40px;
+  color: #8b8b8b;
+}
+
+.orderForm > .price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orderForm > .price > span {
+  font-weight: 500;
+  font-size: 40px;
+  color: #8b8b8b;
+}
+
+.orderForm > .price > span.price {
+  font-weight: 700;
+  font-size: 64px;
+  color: #282828;
+  margin-left: auto;
+}
+
+.orderForm > form {
+  display: flex;
+  flex-direction: column;
+  width: 484px;
+  margin-top: 32px;
+}
+
+.orderForm > form > input[type="text"] {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 16px 32px;
+  border-radius: 6px;
+  border: 1px solid #dddddd;
+  margin-bottom: 16px;
+}
+
+.orderForm > form > input[type="submit"] {
+  border-radius: 6px;
+  background-color: #0d50ff;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 16px 32px;
+  border: none;
+  margin-top: 16px;
+  transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out,
+    0.3s border ease-in-out;
+}
+
+.orderForm > form > input[type="submit"]:hover {
+  background-color: #282828;
+  cursor: pointer;
+}
+
+.orderForm > form > input[type="submit"]:disabled {
+  background: white;
+  color: #282828;
+  border: 1px solid #282828;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .orderForm > form {
+    width: 100%;
+  }
+  .orderForm > .price > span.price {
+    font-size: 48px;
+  }
+}

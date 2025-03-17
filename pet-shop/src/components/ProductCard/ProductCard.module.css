@@ -1,0 +1,76 @@
+.productCard {
+  position: relative;
+  border-radius: 12px;
+  border: 1px solid #f1f3f4;
+  width: 316px;
+  height: 425px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.productCard:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.productsContent {
+  padding: 0px 32px 32px 32px;
+  width: 316px;
+  height: 118px;
+}
+.productsTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 202px;
+  font: 500 20px / 1.3 "Montserrat", sans-serif;
+  text-align: center;
+  color: #282828;
+}
+
+.primaryPrice {
+  font: 600 40px / 1.1 "Montserrat", sans-serif;
+  color: #282828;
+}
+.discountBorder {
+  position: absolute;
+  width: 67px;
+  text-align: center;
+  border-radius: 6px;
+  right: 16px;
+  top: 16px;
+  background-color: #0d50ff;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 4px 8px;
+}
+.secondaryPrice {
+  font-size: 20px;
+  color: #8b8b8b;
+  font-weight: 500;
+  text-decoration: line-through;
+  margin-left: 16px;
+}
+
+.cartButton {
+  position: absolute;
+  top: 220px;
+  left: 16px;
+  width: 284px;
+  color: white;
+  border: none;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.productCard:hover .cartButton {
+  opacity: 1;
+}
+
+.cartButton.added {
+  background-color: black;
+}
