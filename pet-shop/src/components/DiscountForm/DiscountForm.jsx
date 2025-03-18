@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import animals from "../../assets/sales/animals.svg";
@@ -13,11 +13,17 @@ export default function DiscountForm() {
     title: "",
     message: "",
   });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    // reset
+    useShoppingCartStore.getState().resetDiscount();
+  }, []);
 
   const onSubmit = () => {
     setNotification({
@@ -25,7 +31,8 @@ export default function DiscountForm() {
       title: "Discount Applied!",
       message: "You received an additional 5% discount on your first order.",
     });
-    useShoppingCartStore.getState().applyDiscount(); // Renew discount
+
+    useShoppingCartStore.getState().applyDiscount();
   };
 
   return (
@@ -115,6 +122,5 @@ const textFieldStyles = {
     "&:hover fieldset": { borderColor: "#FFFFFF" },
     "&.Mui-focused fieldset": { borderColor: "#FFFFFF" },
   },
-  "& .MuiFormLabel-root": { color: "#FFFFFF" },
-  "& .MuiInputBase-input::placeholder": { color: "#FFFFFF", opacity: 0.6 },
+  "& .MuiFormLabel-root": { color: "white" },
 };

@@ -2,6 +2,26 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3333/categories";
 
-export const get = async () => (await axios.get(`${API_URL}/all`)).data;
+// handle error per API
+export const get = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/all`);
+    return response.data;
+  } catch (error) {
+    // Return the error with details
+    throw new Error(
+      error.response ? error.response.data.message : error.message
+    );
+  }
+};
 
-export const getById = async (id) => (await axios.get(`${API_URL}/${id}`)).data;
+export const getById = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response ? error.response.data.message : error.message
+    );
+  }
+};

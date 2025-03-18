@@ -7,7 +7,7 @@ import useShoppingCartStore from "../../zustand/stores/shoppingCart";
 import { Badge } from "@mui/material";
 
 export default function Header() {
-  // Watch changing in products, to recount totalCount it changed
+  // Watch changing in products, to recount totalCount
   const totalCount = useShoppingCartStore((state) =>
     Object.values(state.products).reduce(
       (total, product) => total + product.count,
@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <header>
       <nav>
-        <div className={styles.icons}>
+        <div className={styles.iconsContainer}>
           <NavLink
             style={({ isActive }) => ({
               color: isActive ? "#0D50FF" : "black",
@@ -26,7 +26,7 @@ export default function Header() {
             })}
             to="/"
           >
-            <img src={logo} alt="logo" />
+            <img className={styles.icons} src={logo} alt="logo" />
           </NavLink>
         </div>
         <ul>
@@ -69,16 +69,35 @@ export default function Header() {
                 color: isActive ? "#0D50FF" : "black",
                 textDecoration: "none",
               })}
-              to="/sales"
+              to="/allsales"
             >
               All Sales
             </NavLink>
           </li>
         </ul>
-        <div className={styles.icons}>
+        <div className={styles.iconsContainer}>
           <Link to="/checkout">
-            <Badge badgeContent={totalCount} color="primary">
-              <img src={shopIcon} alt="shopIcon" />
+            <Badge
+              sx={{
+                "& .MuiBadge-badge": {
+                  backgroundColor: "#0D50FF",
+                  color: "white",
+                  width: 26,
+                  height: 26,
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  right: 35,
+                  top: 20,
+                },
+              }}
+              badgeContent={totalCount}
+              color="primary"
+            >
+              <img className={styles.icons} src={shopIcon} alt="shopIcon" />
             </Badge>
           </Link>
         </div>

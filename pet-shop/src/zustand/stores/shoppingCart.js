@@ -8,7 +8,7 @@ const useShoppingCartStore = create(
     persist(
       immer((set, get) => ({
         products: {},
-        userReceivedDiscount: false, // Новое состояние для 5% скидки
+        userReceivedDiscount: false, // State for my 5% disc
 
         push: (product, count = 1) => {
           set((state) => {
@@ -58,8 +58,15 @@ const useShoppingCartStore = create(
             0
           );
 
-          // Если скидка 5% применена — пересчитываем сумму
           return get().userReceivedDiscount ? baseTotal * 0.95 : baseTotal;
+        },
+
+        updateQuantity: (productId, newCount) => {
+          set((state) => {
+            if (state.products[productId] && newCount >= 1) {
+              state.products[productId].count = newCount;
+            }
+          });
         },
 
         totalCount: () => {
@@ -73,6 +80,11 @@ const useShoppingCartStore = create(
 
         applyDiscount: () => {
           set({ userReceivedDiscount: true });
+        },
+
+        // reset my discount per mont the page
+        resetDiscount: () => {
+          set({ userReceivedDiscount: false });
         },
       })),
       {

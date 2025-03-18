@@ -14,11 +14,14 @@ a {
   cursor: pointer;
   font-family: "Montserrat", sans-serif;
 }
-.icons {
-  width: 70px;
-  height: 70px;
+.iconsContainer {
   display: flex;
+  justify-content: center;
   margin: 41px 40px 39px;
+}
+.icons {
+  width: 44px;
+  height: 48px;
 }
 
 a {

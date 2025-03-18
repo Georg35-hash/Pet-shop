@@ -8,6 +8,7 @@ import { CircularProgress } from "@mui/material";
 
 export default function CategoriesPage() {
   const { categories, loading, error, fetchCategories } = useCategoriesStore();
+
   useEffect(() => {
     if (categories.length === 0) {
       fetchCategories(); // Load categories when mont the page
@@ -29,11 +30,11 @@ export default function CategoriesPage() {
   return (
     <>
       <NavigationRow
+        style={{ width: "250px", maxWidth: "100%" }}
         buttons={[
           { text: "Main page", route: "/" },
           { text: "Categories", route: "/categories" },
         ]}
-        style={{ maxWidth: 200 }}
       />
       <section className={styles.categories}>
         <SectionTitle content="Categories" />

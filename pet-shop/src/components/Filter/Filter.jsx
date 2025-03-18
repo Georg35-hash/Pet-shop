@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../Filter/Filter.module.css";
 import CheckedIcon from "../../assets/all-products/checkbox-checked.svg";
+import useProductStore from "../../zustand/stores/products";
 
-function Filters({
-  products,
-  setProducts,
+export default function Filter({
   features = { price: true, discounted: true, sorted: true },
 }) {
   const [filters, setFilters] = useState({
@@ -13,10 +12,15 @@ function Filters({
     discounted: false,
     sorted: "1",
   });
-  const [initialProducts] = useState(products);
+
+  const { products, setFilteredProducts } = useProductStore();
+
+  useEffect(() => {
+    applyFilters(filters);
+  }, [filters, products]);
 
   const applyFilters = (newFilters) => {
-    let filteredProducts = [...initialProducts];
+    let filteredProducts = [...products];
 
     const fromPrice = parseFloat(newFilters.from);
     const toPrice = parseFloat(newFilters.to);
@@ -61,21 +65,19 @@ function Filters({
         break;
     }
 
-    setProducts(filteredProducts);
+    setFilteredProducts(filteredProducts);
   };
 
   const handleChange = (event) => {
     const { id, value, type, checked } = event.target;
-    const newFilters = {
-      ...filters,
+    setFilters((prevFilters) => ({
+      ...prevFilters,
       [id]: type === "checkbox" ? checked : value,
-    };
-    setFilters(newFilters);
-    applyFilters(newFilters);
+    }));
   };
 
   return (
-    <form className={styles.filters}>
+    <form className={styles.filters} onSubmit={(e) => e.preventDefault()}>
       {features.price && (
         <>
           <label htmlFor="from">Price</label>
@@ -129,5 +131,3 @@ function Filters({
     </form>
   );
 }
-
-export default Filters;

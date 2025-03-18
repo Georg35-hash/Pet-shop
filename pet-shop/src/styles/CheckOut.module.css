@@ -125,8 +125,8 @@
 }
 
 .cartPageItemImg img {
-  width: 200px;
-  height: 180px;
+  width: 220px;
+  height: 250px;
   object-fit: cover;
   border-right: 1px solid #dddddd;
 }
@@ -141,6 +141,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 32px;
 }
 
 .cartPageItemInfoLeft h4 {

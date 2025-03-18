@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useShoppingCartStore from "../zustand/stores/shoppingCart";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/CheckOut.module.css";
 import OrderForm from "../components/OrderForm/OrderForm";
 import Notifi from "../components/Notif/Notif";
@@ -15,8 +15,14 @@ import NavigationButton from "../components/NavButton/NavButton";
 
 export default function CheckOut() {
   const user = useUserStore((state) => state.user);
-  const { products, remove, updateQuantity, changeQuantity, clear } =
-    useShoppingCartStore();
+  const {
+    products,
+    remove,
+    updateQuantity,
+    incrementCount,
+    decrementCount,
+    clear,
+  } = useShoppingCartStore();
   const navigate = useNavigate();
   const [notification, setNotification] = useState({
     isShown: false,
@@ -85,11 +91,7 @@ export default function CheckOut() {
                           </div>
                         </div>
                         <div className={styles.cartPageItemInfoLeftBtnCounter}>
-                          <button
-                            onClick={() =>
-                              changeQuantity("decrement", product.id)
-                            }
-                          >
+                          <button onClick={() => decrementCount(product.id)}>
                             -
                           </button>
                           <input
@@ -100,11 +102,7 @@ export default function CheckOut() {
                               updateQuantity(product.id, Number(e.target.value))
                             }
                           />
-                          <button
-                            onClick={() =>
-                              changeQuantity("increment", product.id)
-                            }
-                          >
+                          <button onClick={() => incrementCount(product.id)}>
                             +
                           </button>
                         </div>

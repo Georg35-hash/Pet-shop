@@ -11,17 +11,18 @@ import ProductPage from "./pages/ProductPage";
 import useProductStore from "./zustand/stores/products";
 import useCategoryStore from "./zustand/stores/categories";
 import { useEffect } from "react";
+import AllSales from "./pages/AllSales";
 
 export default function App() {
-  const fetchProducts = useProductStore((state) => state.fetch);
-  const fetchCategories = useCategoryStore((state) => state.fetch);
+  const fetchProducts = useProductStore((state) => state.fetchProducts);
+  const fetchCategories = useCategoryStore((state) => state.fetchCategories);
 
   useEffect(() => {
     (async () => {
       await fetchProducts();
       await fetchCategories();
     })();
-  }, []);
+  }, [fetchProducts, fetchCategories]);
 
   return (
     <Router>
@@ -32,8 +33,9 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/products" element={<AllProducts />} />
-          <Route path="/products/:productId" element={<ProductPage />}></Route>
+          <Route path="/products/:productId" element={<ProductPage />} />
           <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/allsales" element={<AllSales />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

@@ -1,8 +1,8 @@
 .navigationRow {
   display: flex;
   align-items: center;
-  width: 240px;
-  max-width: 100%;
+  justify-content: flex-start;
+  max-width: 250px;
 }
 
 .navigationRow > hr {

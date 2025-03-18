@@ -1,5 +1,5 @@
 import styles from "../styles/AllProducts.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Filter from "../components/Filter/Filter";
 import useProductStore from "../zustand/stores/products";
 import ProductCard from "../components/ProductCard/ProductCard";
@@ -8,17 +8,18 @@ import SectionTitle from "../components/SectionTitle/SectionTitle";
 import { CircularProgress } from "@mui/material";
 
 export default function AllProducts() {
-  const storeProducts = useProductStore((state) => state.products);
-
-  const [products, setProducts] = useState(storeProducts);
-
-  const { loading, error, fetchProducts } = useProductStore();
+  const {
+    products,
+    filteredProducts,
+    fetchProducts,
+    setFilteredProducts,
+    loading,
+    error,
+  } = useProductStore();
 
   useEffect(() => {
-    if (products.length === 0) {
-      fetchProducts(); // Load categories when mont the page
-    }
-  }, [products, fetchProducts]);
+    fetchProducts();
+  }, []);
 
   if (loading) {
     return (
@@ -29,11 +30,13 @@ export default function AllProducts() {
   }
 
   if (error) {
-    <p style={{ color: "red" }}>Error: {error}</p>;
+    return <p style={{ color: "red" }}>Error: {error}</p>;
   }
+
   return (
     <>
       <NavigationRow
+        style={{ width: "270px", maxWidth: "100%" }}
         buttons={[
           { text: "Main page", route: "/" },
           { text: "All products", route: "/products" },
@@ -41,9 +44,9 @@ export default function AllProducts() {
       />
       <section className={styles.products}>
         <SectionTitle content="All products" />
-        <Filter products={products} setProducts={setProducts} />
+        <Filter products={products} setFilteredProducts={setFilteredProducts} />
         <div className={styles.cards}>
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}
         </div>

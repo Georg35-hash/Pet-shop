@@ -1,5 +1,6 @@
 .coupleSection {
   padding: 16px;
+  position: relative;
 }
 .categoriesRenderImage {
   border-radius: 12px;
@@ -69,8 +70,21 @@
   margin-top: 10px;
 }
 
+.coupleSliderWrapper svg {
+  position: absolute;
+  top: 60%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+}
+.coupleSliderWrapper svg:first-child {
+  left: 0;
+}
+
+.coupleSliderWrapper svg:last-child {
+  right: 0;
+}
 .coupleSliderWrapper {
-  margin: 0 auto;
   max-width: 100%;
   overflow: hidden;
   display: flex;
@@ -82,6 +96,30 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  flex-direction: row;
+  list-style: none;
   gap: 32px;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.categoriesRenderItem {
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

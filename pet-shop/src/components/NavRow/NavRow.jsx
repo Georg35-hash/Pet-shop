@@ -8,15 +8,20 @@ function NavigationRow({ buttons, style }) {
     isPrimary: index === buttons.length - 1, // without Mutation
   }));
 
+  const truncateText = (text, maxLength = 10) =>
+    text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+
   return (
     <div className={styles.navigationRow} style={style}>
       {updatedButtons.map((button, index) => (
-        <Fragment key={button.text}>
+        <Fragment key={button.route || `${button.text}-${index}`}>
           <NavigationButton
-            text={button.text}
+            style={{ maxWidth: "100%" }}
+            text={truncateText(button.text)}
             route={button.route}
             isPrimary={button.isPrimary}
           />
+
           {index < updatedButtons.length - 1 && <hr />}
         </Fragment>
       ))}
