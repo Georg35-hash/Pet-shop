@@ -116,11 +116,11 @@ export default function DiscountForm() {
 const textFieldStyles = {
   mt: 2,
   width: "100%",
-  "& input": { caretColor: "#FFFFFF" },
+  "& input": { caretColor: "white" },
   "& .MuiOutlinedInput-root": {
-    "& fieldset": { borderColor: "#FFFFFF" },
-    "&:hover fieldset": { borderColor: "#FFFFFF" },
-    "&.Mui-focused fieldset": { borderColor: "#FFFFFF" },
+    "& fieldset": { borderColor: "white" },
+    "&:hover fieldset": { borderColor: "white" },
+    "&.Mui-focused fieldset": { borderColor: "white" },
   },
   "& .MuiFormLabel-root": { color: "white" },
 };

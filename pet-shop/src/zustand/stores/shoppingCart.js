@@ -8,25 +8,21 @@ const useShoppingCartStore = create(
     persist(
       immer((set, get) => ({
         products: {},
-        userReceivedDiscount: false, // State for my 5% disc
+        userReceivedDiscount: false,
 
         push: (product, count = 1) => {
           set((state) => {
-            const newProducts = { ...state.products };
-            if (!newProducts[product.id]) {
-              newProducts[product.id] = { ...product, count };
+            if (!state.products[product.id]) {
+              state.products[product.id] = { ...product, count };
             } else {
-              newProducts[product.id].count += count;
+              state.products[product.id].count += count;
             }
-            return { products: newProducts };
           });
         },
 
         remove: (productId) => {
           set((state) => {
-            const newProducts = { ...state.products };
-            delete newProducts[productId];
-            return { products: newProducts };
+            delete state.products[productId];
           });
         },
 
@@ -40,11 +36,21 @@ const useShoppingCartStore = create(
 
         decrementCount: (productId) => {
           set((state) => {
-            if (
-              state.products[productId] &&
-              state.products[productId].count > 1
-            ) {
+            if (state.products[productId]) {
               state.products[productId].count -= 1;
+              if (state.products[productId].count < 1) {
+                delete state.products[productId];
+              }
+            }
+          });
+        },
+
+        updateQuantity: (productId, newCount) => {
+          set((state) => {
+            if (newCount < 1) {
+              delete state.products[productId];
+            } else if (state.products[productId]) {
+              state.products[productId].count = newCount;
             }
           });
         },
@@ -52,21 +58,13 @@ const useShoppingCartStore = create(
         totalPrice: () => {
           const baseTotal = Object.values(get().products).reduce(
             (total, product) => {
-              const price = product.discont_price || product.price;
+              const price = product.discont_price ?? product.price;
               return total + price * product.count;
             },
             0
           );
 
           return get().userReceivedDiscount ? baseTotal * 0.95 : baseTotal;
-        },
-
-        updateQuantity: (productId, newCount) => {
-          set((state) => {
-            if (state.products[productId] && newCount >= 1) {
-              state.products[productId].count = newCount;
-            }
-          });
         },
 
         totalCount: () => {
@@ -82,9 +80,12 @@ const useShoppingCartStore = create(
           set({ userReceivedDiscount: true });
         },
 
-        // reset my discount per mont the page
         resetDiscount: () => {
           set({ userReceivedDiscount: false });
+        },
+
+        resetCart: () => {
+          set({ products: {}, userReceivedDiscount: false });
         },
       })),
       {

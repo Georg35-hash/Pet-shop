@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import Button from "../components/Button/Button";
@@ -8,55 +8,46 @@ import useProductsStore from "../zustand/stores/products";
 import useCategoryStore from "../zustand/stores/categories";
 import styles from "../styles/ProductPage.module.css";
 
-function ProductPage() {
+export default function ProductPage() {
   const { productId } = useParams();
-  const { fetchProductById, product, loading, error } = useProductsStore();
-  const categoryById = useCategoryStore((state) => state.byId);
+  const { loading, error, products, fetchProductById } = useProductsStore();
+  const categoryById = useCategoryStore((state) => state.fetchCategoryByID);
   const push = useShoppingCartStore((state) => state.push);
-  const updateQuantity = useShoppingCartStore((state) => state.updateQuantity);
-  const incrementCount = useShoppingCartStore((state) => state.incrementCount);
-  const decrementCount = useShoppingCartStore((state) => state.decrementCount);
+  const [quantity, setQuantity] = useState(1);
   const [isTextShortened, setTextShortened] = useState(true);
   const maxShortenedLength = 700;
 
-  const fetchProduct = useCallback(() => {
+  useEffect(() => {
     fetchProductById(productId);
   }, [fetchProductById, productId]);
 
-  useEffect(() => {
-    fetchProduct();
-  }, [fetchProduct]);
-
   if (loading) return <CircularProgress />;
   if (error) return <p>Error: {error}</p>;
-  if (!product) return <p>Good is not found</p>;
 
-  const category = categoryById?.[product.categoryId] || null;
+  const product = products.find((p) => p.id === Number(productId));
+  if (!product) return <p>Product not found</p>;
 
-  const appendEllipsis = (text) =>
-    text && text.length > maxShortenedLength
-      ? text.slice(0, maxShortenedLength).trim() + "..."
-      : text;
+  const category = categoryById(product.categoryId);
 
   const hasDiscount =
-    product.discont_price !== null && product.discont_price < product.price;
+    product.discont_price && product.discont_price < product.price;
+  const displayPrice = product.discont_price || product.price;
+  const appendEllipsis = (text) =>
+    text?.length > maxShortenedLength
+      ? text.slice(0, maxShortenedLength).trim() + "..."
+      : text;
 
   return (
     <>
       <NavigationRow
         buttons={[
-          { text: "Main Page", route: "/", key: "main" },
-          { text: "Categories", route: "/categories", key: "categories" },
+          { text: "Main Page", route: "/" },
+          { text: "Categories", route: "/categories" },
           {
-            text: category?.title || "Category",
-            route: `/categories/${category?.id || ""}`,
-            key: "category",
+            text: category?.title || "Loading...",
+            route: `/categories/${category.id}`,
           },
-          {
-            text: product.title,
-            route: `/products/${product.id}`,
-            key: "product",
-          },
+          { text: product?.title, route: `/products/${product.id}` },
         ]}
         style={{ width: "500px", maxWidth: "100%" }}
       />
@@ -65,45 +56,40 @@ function ProductPage() {
         {product.image && (
           <img
             src={`http://localhost:3333/${product.image}`}
-            alt={product.title || "Product Image"}
+            alt={product.title}
           />
         )}
         <div>
-          <h3>{product.title || "No Title"}</h3>
+          <h3>{product.title}</h3>
           {hasDiscount && (
             <span className={styles.discountBorder}>
-              -{Math.floor(100 - (product.discont_price * 100) / product.price)}
-              %
+              -{Math.floor(100 - (displayPrice * 100) / product.price)}%
             </span>
           )}
           <div className={styles.productsContent}>
-            <span className={styles.primaryPrice}>
-              $
-              {product.discont_price !== null
-                ? product.discont_price
-                : product.price}
-            </span>
-            <span className={styles.secondaryPrice}>
-              {product.discont_price !== null ? `$${product.price}` : ""}
-            </span>
+            <span className={styles.primaryPrice}>${displayPrice}</span>
+            {hasDiscount && (
+              <span className={styles.secondaryPrice}>${product.price}</span>
+            )}
           </div>
           <div className={styles.countAndButton}>
             <div className={styles.cartPageItemInfoLeftBtnCounter}>
-              <button onClick={() => decrementCount(product.id)}>-</button>
+              <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>
+                -
+              </button>
               <input
                 type="text"
-                min="1"
-                value={product.count}
+                value={quantity}
                 onChange={(e) =>
-                  updateQuantity(product.id, Number(e.target.value))
+                  setQuantity(Math.max(1, Number(e.target.value) || 1))
                 }
               />
-              <button onClick={() => incrementCount(product.id)}>+</button>
+              <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
             <Button
               initialText="Add to cart"
               clickedText="Added"
-              onClick={() => push(product)}
+              onClick={() => push(product, quantity)}
               style={{ width: "316px" }}
             />
           </div>
@@ -127,5 +113,3 @@ function ProductPage() {
     </>
   );
 }
-
-export default ProductPage;

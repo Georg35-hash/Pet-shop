@@ -1,46 +1,48 @@
 import { create } from "zustand";
-import {
-  get as fetchAllCategories,
-  getById as fetchCategoryById,
-} from "../services/categories";
+import { immer } from "zustand/middleware/immer";
+import { devtools } from "zustand/middleware";
+import { persist } from "zustand/middleware";
+import { get as fetchAllCategories } from "../services/categories";
 
-const useCategoryStore = create((set) => ({
-  categories: [],
-  loading: false,
-  error: null,
-
-  fetchCategories: async () => {
-    set({ loading: true, error: null });
-
-    try {
-      const categories = await fetchAllCategories();
-      set({ categories, loading: false });
-    } catch (err) {
-      // Log and save error
-      console.error("Failed to fetch categories:", err);
-      set({ error: err.message, loading: false });
-    }
-  },
-
-  fetchCategoryById: async (id) => {
-    set({ loading: true, error: null });
-
-    try {
-      const category = await fetchCategoryById(id);
-      set((state) => ({
-        categories: [...state.categories, category],
+const useCategoryStore = create(
+  persist(
+    devtools(
+      immer((set, get) => ({
+        categories: [],
         loading: false,
-      }));
-      return category;
-    } catch (err) {
-      console.error("Failed to fetch category by ID:", err);
-      set({ error: err.message, loading: false });
-      return null;
-    }
-  },
+        error: null,
 
-  name: "categories",
-  getStorage: () => localStorage,
-}));
+        fetchCategories: async () => {
+          set((state) => {
+            state.loading = true;
+            state.error = null;
+          });
+
+          try {
+            const categories = await fetchAllCategories();
+            set((state) => {
+              state.categories = categories;
+              state.loading = false;
+            });
+          } catch (err) {
+            console.error("Failed to fetch categories:", err);
+            set((state) => {
+              state.error = err.message;
+              state.loading = false;
+            });
+          }
+        },
+
+        fetchCategoryByID: (id) => {
+          return get().categories.find((category) => category.id === id);
+        },
+      }))
+    ),
+    {
+      name: "categories",
+      getStorage: () => localStorage,
+    }
+  )
+);
 
 export default useCategoryStore;

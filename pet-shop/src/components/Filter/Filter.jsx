@@ -5,11 +5,12 @@ import useProductStore from "../../zustand/stores/products";
 
 export default function Filter({
   features = { price: true, discounted: true, sorted: true },
+  onlyDiscounted = false, // Флаг, если фильтр используется в AllSales
 }) {
   const [filters, setFilters] = useState({
     from: "",
     to: "",
-    discounted: false,
+    discounted: onlyDiscounted, // Если на странице AllSales, сразу true
     sorted: "1",
   });
 
@@ -21,6 +22,13 @@ export default function Filter({
 
   const applyFilters = (newFilters) => {
     let filteredProducts = [...products];
+
+    if (onlyDiscounted) {
+      filteredProducts = filteredProducts.filter(
+        (product) =>
+          product.discont_price !== null && product.discont_price !== undefined
+      );
+    }
 
     const fromPrice = parseFloat(newFilters.from);
     const toPrice = parseFloat(newFilters.to);
@@ -41,7 +49,8 @@ export default function Filter({
 
     if (newFilters.discounted) {
       filteredProducts = filteredProducts.filter(
-        (product) => product.discont_price
+        (product) =>
+          product.discont_price !== null && product.discont_price !== undefined
       );
     }
 
@@ -97,7 +106,7 @@ export default function Filter({
           />
         </>
       )}
-      {features.discounted && (
+      {features.discounted && !onlyDiscounted && (
         <>
           <label htmlFor="discounted">Discounted items</label>
           <input

@@ -6,6 +6,9 @@
 }
 
 .productSection > img {
+  width: 548px;
+  height: 572px;
+  object-fit: contain;
   border-radius: 12px;
 }
 
@@ -18,7 +21,6 @@
   font-size: 40px;
   line-height: 44px;
   font-weight: 700;
-  margin-top: -32px;
 }
 
 .productSection > div > * {
@@ -76,16 +78,37 @@
   width: 316px;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.cartPageItemInfoLeftBtnCounter {
+  color: #282828;
+  display: flex;
+}
+
+.cartPageItemInfoLeftBtnCounter button {
+  width: clamp(28px, 5.5vw, 58px);
+  height: clamp(28px, 5.5vw, 58px);
+  border-radius: 6px;
+  border: 1px solid #dddddd;
+  background: transparent;
+  color: #8b8b8b;
+  font-size: 25px;
 }
 
 .primaryPrice {
   font: 600 40px / 1.1 "Montserrat", sans-serif;
   color: #282828;
 }
+.cartPageItemInfoLeftBtnCounter input {
+  width: clamp(46px, 9.2vw, 96px);
+  height: clamp(28px, 5.5vw, 58px);
+  border: 1px solid #dddddd;
+  border-left: none;
+  border-right: none;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+}
+
 @media (max-width: 1200px) {
   .productSection {
     flex-direction: column;

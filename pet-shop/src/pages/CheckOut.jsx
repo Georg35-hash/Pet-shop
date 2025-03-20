@@ -86,7 +86,12 @@ export default function CheckOut() {
                             className={styles.cartPageItemInfoLeftPricePrice}
                           >
                             <span className={styles.discountPrice}>
-                              ${product.discont_price * product.count}
+                              $
+                              {(
+                                (product.discont_price != null
+                                  ? product.discont_price
+                                  : product.price) * product.count
+                              ).toFixed(2)}
                             </span>
                           </div>
                         </div>
@@ -95,8 +100,7 @@ export default function CheckOut() {
                             -
                           </button>
                           <input
-                            type="number"
-                            min="1"
+                            type="text"
                             value={product.count}
                             onChange={(e) =>
                               updateQuantity(product.id, Number(e.target.value))

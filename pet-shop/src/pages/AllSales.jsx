@@ -1,27 +1,41 @@
-import useProductStore from "../../src/zustand/stores/products";
-import Filter from "../components/Filter/Filter";
 import { useEffect } from "react";
+import styles from "../../src/styles/AllSales.module.css";
+
+import useProductsStore from "../../src/zustand/stores/products.js";
+
+import Filters from "../components/Filter/Filter";
+import ProductCard from "../../src/components/ProductCard/ProductCard";
+import SectionTitle from "../../src/components/SectionTitle/SectionTitle.jsx";
+import NavigationRow from "../../src/components/NavRow/NavRow.jsx";
 
 export default function AllSales() {
-  const { filteredDiscountedProducts, fetchProducts } = useProductStore();
+  const { discounted, filteredProducts, setFilteredProducts } =
+    useProductsStore();
 
   useEffect(() => {
-    fetchProducts();
+    setFilteredProducts(discounted()); // Загружаем товары с учетом скидок при монтировании
   }, []);
 
   return (
-    <div>
-      <h2>Скидочные товары</h2>
-      <Filter
-        products={filteredDiscountedProducts}
-        setFilteredProducts={() => {}}
-        features={{ discounted: true }}
+    <>
+      <NavigationRow
+        buttons={[
+          { text: "Main Page", route: "/" },
+          { text: "All Sales", route: "/sales" },
+        ]}
       />
-      {filteredDiscountedProducts.map((product) => (
-        <div key={product.id}>
-          {product.name} - {product.discont_price} руб.
+      <section className={styles.sales}>
+        <SectionTitle content="Discounted Items" />
+        <Filters
+          features={{ price: true, sorted: true }}
+          onlyDiscounted={true}
+        />
+        <div className={styles.cards}>
+          {filteredProducts.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
         </div>
-      ))}
-    </div>
+      </section>
+    </>
   );
 }

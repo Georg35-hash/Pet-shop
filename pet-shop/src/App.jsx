@@ -12,6 +12,7 @@ import useProductStore from "./zustand/stores/products";
 import useCategoryStore from "./zustand/stores/categories";
 import { useEffect } from "react";
 import AllSales from "./pages/AllSales";
+import Category from "./pages/Category";
 
 export default function App() {
   const fetchProducts = useProductStore((state) => state.fetchProducts);
@@ -32,6 +33,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/categories/:categoryId" element={<Category />}></Route>
           <Route path="/products" element={<AllProducts />} />
           <Route path="/products/:productId" element={<ProductPage />} />
           <Route path="/checkout" element={<CheckOut />} />
