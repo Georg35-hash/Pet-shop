@@ -12,7 +12,6 @@ nav {
 }
 a {
   cursor: pointer;
-  font-family: "Montserrat", sans-serif;
 }
 .iconsContainer {
   display: flex;
@@ -22,34 +21,4 @@ a {
 .icons {
   width: 44px;
   height: 48px;
-}
-
-a {
-  transition: transform 0.3s ease;
-}
-
-a:hover {
-  animation: bounce 1s ease-in-out;
-}
-
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 768px) {
-  nav {
-    display: block;
-  }
-  .icons {
-    margin: 0 auto;
-    max-width: 100%;
-  }
 }

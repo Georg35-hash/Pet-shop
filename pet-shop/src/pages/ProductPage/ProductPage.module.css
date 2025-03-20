@@ -94,7 +94,10 @@
 }
 
 .primaryPrice {
-  font: 600 40px / 1.1 "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.1;
+  font-family: sans-serif;
   color: #282828;
 }
 .cartPageItemInfoLeftBtnCounter input {

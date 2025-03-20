@@ -6,6 +6,17 @@ import styles from "../DiscountForm/DiscountForm.module.css";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
 import Notifi from "../Notif/Notif";
 
+const textFieldStyles = {
+  mt: 2,
+  width: "100%",
+  "& input": { caretColor: "white" },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": { borderColor: "white" },
+    "&.Mui-focused fieldset": { borderColor: "white" },
+  },
+  "& .MuiFormLabel-root": { color: "white" },
+};
+
 export default function DiscountForm() {
   const [isButtonClicked, setCardHovered] = useState(false);
   const [notification, setNotification] = useState({
@@ -36,7 +47,7 @@ export default function DiscountForm() {
   };
 
   return (
-    <section className={styles.salesSection}>
+    <section className={`${styles.salesSection} hidden`}>
       <h2 className={styles.discountTitle}>5% off on the first order</h2>
 
       <div className={styles.salesContainer}>
@@ -112,15 +123,3 @@ export default function DiscountForm() {
     </section>
   );
 }
-
-const textFieldStyles = {
-  mt: 2,
-  width: "100%",
-  "& input": { caretColor: "white" },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": { borderColor: "white" },
-    "&:hover fieldset": { borderColor: "white" },
-    "&.Mui-focused fieldset": { borderColor: "white" },
-  },
-  "& .MuiFormLabel-root": { color: "white" },
-};

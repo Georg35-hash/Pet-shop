@@ -1,8 +1,8 @@
-section.sales {
+.sales {
   margin-top: 40px;
 }
 
-section.sales > .cards {
+.sales > .cards {
   margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));

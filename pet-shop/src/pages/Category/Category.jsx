@@ -1,12 +1,12 @@
+import styles from "../Category/Category.module.css";
 import { useParams } from "react-router-dom";
+import useProductStore from "../../zustand/stores/products.js";
+import useCategoryStore from "../../zustand/stores/categories.js";
 
-import useProductStore from "../../src/zustand/stores/products.js";
-import useCategoryStore from "../zustand/stores/categories";
-
-import Filters from "../components/Filter/Filter";
-import ProductCard from "../../src/components/ProductCard/ProductCard";
-import SectionTitle from "../../src/components/SectionTitle/SectionTitle.jsx";
-import NavigationRow from "../../src/components/NavRow/NavRow.jsx";
+import Filters from "../../components/Filter/Filter.jsx";
+import ProductCard from "../../components/ProductCard/ProductCard.jsx";
+import SectionTitle from "../../components/SectionTitle/SectionTitle.jsx";
+import NavigationRow from "../../components/NavRow/NavRow.jsx";
 
 export default function Category() {
   const { categoryId } = useParams();
@@ -32,11 +32,12 @@ export default function Category() {
             route: `/categories/${categoryId}`,
           },
         ]}
+        style={{ width: "400px", maxWidth: "100%" }}
       />
       <section>
         <SectionTitle content={category ? category.title : "Loading..."} />
         <Filters products={products} />
-        <div>
+        <div className={styles.cards}>
           {productsByCategory.length > 0 ? (
             productsByCategory.map((product) => (
               <ProductCard product={product} key={product.id} />

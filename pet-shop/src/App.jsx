@@ -1,18 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Box, CssBaseline } from "@mui/material";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import Home from "./pages/Home";
-import CheckOut from "./pages/CheckOut";
-import CategoriesPage from "./pages/CategoriesPage";
-import AllProducts from "./pages/AllProducts";
-import NotFoundPage from "./pages/NotFoundPage";
-import ProductPage from "./pages/ProductPage";
-import useProductStore from "./zustand/stores/products";
-import useCategoryStore from "./zustand/stores/categories";
+import Footer from "../src/components/Footer/Footer";
+import Header from "../src/components/Header/Header";
+import Home from "../src/pages/Home";
+import CheckOut from "../src/pages/CheckOut/CheckOut";
+import CategoriesPage from "../src/pages/AllCategoriesPage/AllCategories";
+import AllProducts from "../src/pages/AllProducts/AllProducts";
+import NotFoundPage from "../src/pages/NotFoundPage/NotFoundPage";
+import ProductPage from "../src/pages/ProductPage/ProductPage";
+import useProductStore from "../src/zustand/stores/products";
+import useCategoryStore from "../src/zustand/stores/categories";
 import { useEffect } from "react";
-import AllSales from "./pages/AllSales";
-import Category from "./pages/Category";
+import AllSales from "../src/pages/AllSales/AllSales";
+import Category from "../src/pages/Category/Category";
+import AnimationProvider from "./hooks/AnimationProvider";
+import "../src/styles/global.css";
 
 export default function App() {
   const fetchProducts = useProductStore((state) => state.fetchProducts);
@@ -27,21 +29,23 @@ export default function App() {
 
   return (
     <Router>
-      <Box sx={{ margin: "0 auto", maxWidth: "1440px" }}>
-        <CssBaseline />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/categories/:categoryId" element={<Category />}></Route>
-          <Route path="/products" element={<AllProducts />} />
-          <Route path="/products/:productId" element={<ProductPage />} />
-          <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/allsales" element={<AllSales />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-        <Footer />
-      </Box>
+      <AnimationProvider threshold={0.1}>
+        <Box sx={{ margin: "0 auto", maxWidth: "1440px" }}>
+          <CssBaseline />
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/categories/:categoryId" element={<Category />} />
+            <Route path="/products" element={<AllProducts />} />
+            <Route path="/products/:productId" element={<ProductPage />} />
+            <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/allsales" element={<AllSales />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+          <Footer />
+        </Box>
+      </AnimationProvider>
     </Router>
   );
 }

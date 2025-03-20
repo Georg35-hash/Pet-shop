@@ -12,76 +12,49 @@ const useProductStore = create(
       immer((set, get) => ({
         products: [],
         filteredProducts: [],
-        categoriesProducts: [],
         loading: false,
         error: null,
 
         fetchProducts: async () => {
-          set((state) => {
-            state.loading = true;
-            state.error = null;
-          });
-
+          set({ loading: true, error: null });
           try {
             const products = await fetchAllProducts();
-            set((state) => {
-              state.products = products;
-              state.filteredProducts = products;
-              state.loading = false;
+            set({
+              products,
+              filteredProducts: products,
+              filteredCategoryProducts: [],
+              loading: false,
             });
           } catch (err) {
-            set((state) => {
-              state.error = err.message;
-              state.loading = false;
-            });
+            set({ error: err.message, loading: false });
           }
         },
 
         fetchProductById: async (id) => {
-          set((state) => {
-            state.loading = true;
-            state.error = null;
-          });
-
+          set({ loading: true, error: null });
           try {
             const product = await fetchProductById(id);
-            set((state) => {
-              state.product = Array.isArray(product) ? product[0] : product;
-              state.loading = false;
+            set({
+              product: Array.isArray(product) ? product[0] : product,
+              loading: false,
             });
           } catch (err) {
-            set((state) => {
-              state.error = err.message;
-              state.loading = false;
-            });
+            set({ error: err.message, loading: false });
           }
         },
 
-        discounted: () => {
-          return get().products.filter(
-            (product) => product.discont_price != null
-          );
-        },
+        discounted: () =>
+          get().products.filter((product) => product.discont_price != null),
 
         setFilteredProducts: (filtered) => {
-          set((state) => {
-            state.filteredProducts = filtered;
-          });
+          set({ filteredProducts: filtered });
         },
-        byCategory: (categoryId) => {
-          let byCategory = [];
 
-          for (let product of get().products) {
-            if (product.categoryId == categoryId) {
-              byCategory.push(product);
-            }
-          }
-
-          return byCategory;
-        },
+        byCategory: (categoryId) =>
+          get().products.filter((product) => product.categoryId == categoryId),
       })),
       {
-        name: "products", // Ключ для localStorage
+        name: "products",
         getStorage: () => localStorage,
       }
     )

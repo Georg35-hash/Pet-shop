@@ -8,7 +8,10 @@
 }
 
 .discountTitle {
-  font: 700 64px / 1.1 "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1.1;
+  font-family: sans-serif;
   text-align: center;
   color: #fff;
 }

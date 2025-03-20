@@ -1,0 +1,47 @@
+.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+a:hover {
+  animation: bounce 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+a:not(:hover) {
+  animation: bounceBack 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes bounceBack {
+  from {
+    transform: translateY(-6px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

@@ -6,6 +6,7 @@ import useCategoryStore from "../../zustand/stores/categories";
 import { CircularProgress, useMediaQuery } from "@mui/material";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import NavigationButton from "../NavButton/NavButton";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Categories() {
   const { categories, loading, error, fetchCategories } = useCategoryStore();
@@ -63,14 +64,16 @@ export default function Categories() {
           {categories
             .slice(activeIndex, activeIndex + visibleCatSlide)
             .map((category) => (
-              <li className={styles.categoriesRenderItem} key={category.id}>
-                <img
-                  className={styles.categoriesRenderImage}
-                  src={`http://localhost:3333${category.image}`}
-                  alt={category.title}
-                />
-                <p className={styles.categoriesDesc}>{category.title}</p>
-              </li>
+              <NavLink to="/categories">
+                <li className={styles.categoriesRenderItem} key={category.id}>
+                  <img
+                    className={styles.categoriesRenderImage}
+                    src={`http://localhost:3333${category.image}`}
+                    alt={category.title}
+                  />
+                  <p className={styles.categoriesDesc}>{category.title}</p>
+                </li>
+              </NavLink>
             ))}
         </ul>
 

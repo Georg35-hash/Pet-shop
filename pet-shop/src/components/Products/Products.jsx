@@ -48,7 +48,7 @@ export default function Products() {
 
   const nextSlide = () => {
     setIsAnimating(true);
-    clearTimeout(animationTimeout.current); // Очищаем перед новым вызовом
+    clearTimeout(animationTimeout.current); // Clear before new call
     animationTimeout.current = setTimeout(() => {
       setActiveIndProducts((prev) => (prev + 1) % filteredProducts.length);
       setIsAnimating(false);

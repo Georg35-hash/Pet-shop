@@ -1,7 +1,7 @@
-import i404 from "../../src/assets/404.png";
-import Button from "../components/Button/Button";
+import i404 from "../../assets/404.png";
+import Button from "../../components/Button/Button";
 import { Link } from "react-router-dom";
-import styles from "../../src/styles/404.module.css";
+import styles from "../NotFoundPage/NotFoundPage.module.css";
 
 export default function NotFoundPage() {
   return (

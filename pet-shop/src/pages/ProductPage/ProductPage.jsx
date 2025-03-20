@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
-import Button from "../components/Button/Button";
-import NavigationRow from "../components/NavRow/NavRow";
-import useShoppingCartStore from "../zustand/stores/shoppingCart";
-import useProductsStore from "../zustand/stores/products";
-import useCategoryStore from "../zustand/stores/categories";
-import styles from "../styles/ProductPage.module.css";
+import Button from "../../components/Button/Button";
+import NavigationRow from "../../components/NavRow/NavRow";
+import useShoppingCartStore from "../../zustand/stores/shoppingCart";
+import useProductsStore from "../../zustand/stores/products";
+import useCategoryStore from "../../zustand/stores/categories";
+import styles from "../ProductPage/ProductPage.module.css";
 
 export default function ProductPage() {
   const { productId } = useParams();
@@ -49,7 +49,7 @@ export default function ProductPage() {
           },
           { text: product?.title, route: `/products/${product.id}` },
         ]}
-        style={{ width: "500px", maxWidth: "100%" }}
+        style={{ width: "600px", maxWidth: "100%" }}
       />
 
       <section className={styles.productSection}>

@@ -22,13 +22,16 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 202px;
-  font: 500 20px / 1.3 "Montserrat", sans-serif;
+  font: 500 20px / 1.3;
   text-align: center;
   color: #282828;
 }
 
 .primaryPrice {
-  font: 600 40px / 1.1 "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.1;
+  font-family: sans-serif;
   color: #282828;
 }
 .discountBorder {
@@ -73,4 +76,8 @@
 
 .cartButton.added {
   background-color: black;
+}
+
+.cardImage {
+  object-fit: contain;
 }

@@ -1,17 +1,17 @@
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import useShoppingCartStore from "../zustand/stores/shoppingCart";
+import useShoppingCartStore from "../../zustand/stores/shoppingCart";
 import { useNavigate } from "react-router-dom";
-import styles from "../styles/CheckOut.module.css";
-import OrderForm from "../components/OrderForm/OrderForm";
-import Notifi from "../components/Notif/Notif";
+import styles from "../CheckOut/CheckOut.module.css";
+import OrderForm from "../../components/OrderForm/OrderForm";
+import Notifi from "../../components/Notif/Notif";
 import { useState } from "react";
-import { send } from "../zustand/services/order";
-import useUserStore from "../zustand/stores/user";
-import Button from "../components/Button/Button";
-import SectionTitle from "../components/SectionTitle/SectionTitle";
+import { send } from "../../zustand/services/order";
+import useUserStore from "../../zustand/stores/user";
+import Button from "../../components/Button/Button";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
-import NavigationButton from "../components/NavButton/NavButton";
+import NavigationButton from "../../components/NavButton/NavButton";
 
 export default function CheckOut() {
   const user = useUserStore((state) => state.user);

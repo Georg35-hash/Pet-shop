@@ -1,10 +1,10 @@
-import styles from "../styles/AllProducts.module.css";
+import styles from "../AllProducts/AllProducts.module.css";
 import { useEffect } from "react";
-import Filter from "../components/Filter/Filter";
-import useProductStore from "../zustand/stores/products";
-import ProductCard from "../components/ProductCard/ProductCard";
-import NavigationRow from "../components/NavRow/NavRow";
-import SectionTitle from "../components/SectionTitle/SectionTitle";
+import Filter from "../../components/Filter/Filter";
+import useProductStore from "../../zustand/stores/products";
+import ProductCard from "../../components/ProductCard/ProductCard";
+import NavigationRow from "../../components/NavRow/NavRow";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import { CircularProgress } from "@mui/material";
 
 export default function AllProducts() {
