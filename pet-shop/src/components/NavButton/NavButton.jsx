@@ -1,6 +1,11 @@
 import styles from "../NavButton/NavButton.module.css";
 
-function NavigationButton({ text, route, isPrimary = false, style }) {
+export default function NavigationButton({
+  text,
+  route,
+  isPrimary = false,
+  style,
+}) {
   const classes = `${styles.navigationButton} ${
     isPrimary ? styles.primary : ""
   }`;
@@ -11,5 +16,3 @@ function NavigationButton({ text, route, isPrimary = false, style }) {
     </a>
   );
 }
-
-export default NavigationButton;

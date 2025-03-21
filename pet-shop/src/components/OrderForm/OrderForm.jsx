@@ -26,7 +26,6 @@ export default function OrderForm({ onSubmit }) {
     },
   });
 
-  // Обновляем значения формы, если user изменился
   useEffect(() => {
     setValue("username", user.username || "");
     setValue("email", user.email || "");

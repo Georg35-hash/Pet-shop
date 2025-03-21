@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styles from "../AllSales/AllSales.module.css";
 
 import useProductsStore from "../../zustand/stores/products.js";
@@ -9,12 +8,7 @@ import SectionTitle from "../../components/SectionTitle/SectionTitle.jsx";
 import NavigationRow from "../../components/NavRow/NavRow.jsx";
 
 export default function AllSales() {
-  const { discounted, filteredProducts, setFilteredProducts } =
-    useProductsStore();
-
-  useEffect(() => {
-    setFilteredProducts(discounted()); // Загружаем товары с учетом скидок при монтировании
-  }, []);
+  const { filteredProducts } = useProductsStore();
 
   return (
     <>

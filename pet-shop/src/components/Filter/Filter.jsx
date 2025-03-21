@@ -5,12 +5,12 @@ import useProductStore from "../../zustand/stores/products";
 
 export default function Filter({
   features = { price: true, discounted: true, sorted: true },
-  onlyDiscounted = false, // Флаг, если фильтр используется в AllSales
+  onlyDiscounted = false,
 }) {
   const [filters, setFilters] = useState({
     from: "",
     to: "",
-    discounted: onlyDiscounted, // Если на странице AllSales, сразу true
+    discounted: onlyDiscounted,
     sorted: "1",
   });
 

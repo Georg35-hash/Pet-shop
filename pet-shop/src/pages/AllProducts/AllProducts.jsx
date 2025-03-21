@@ -1,5 +1,4 @@
 import styles from "../AllProducts/AllProducts.module.css";
-import { useEffect } from "react";
 import Filter from "../../components/Filter/Filter";
 import useProductStore from "../../zustand/stores/products";
 import ProductCard from "../../components/ProductCard/ProductCard";
@@ -8,18 +7,8 @@ import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import { CircularProgress } from "@mui/material";
 
 export default function AllProducts() {
-  const {
-    products,
-    filteredProducts,
-    fetchProducts,
-    setFilteredProducts,
-    loading,
-    error,
-  } = useProductStore();
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const { products, filteredProducts, setFilteredProducts, loading, error } =
+    useProductStore();
 
   if (loading) {
     return (

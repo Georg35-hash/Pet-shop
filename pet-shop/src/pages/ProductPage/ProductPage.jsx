@@ -8,14 +8,16 @@ import useProductsStore from "../../zustand/stores/products";
 import useCategoryStore from "../../zustand/stores/categories";
 import styles from "../ProductPage/ProductPage.module.css";
 
-export default function ProductPage() {
+const maxShortenedLength = 700;
+
+const ProductPage = () => {
   const { productId } = useParams();
   const { loading, error, products, fetchProductById } = useProductsStore();
   const categoryById = useCategoryStore((state) => state.fetchCategoryByID);
   const push = useShoppingCartStore((state) => state.push);
+
   const [quantity, setQuantity] = useState(1);
   const [isTextShortened, setTextShortened] = useState(true);
-  const maxShortenedLength = 700;
 
   useEffect(() => {
     fetchProductById(productId);
@@ -25,17 +27,30 @@ export default function ProductPage() {
   if (error) return <p>Error: {error}</p>;
 
   const product = products.find((p) => p.id === Number(productId));
-  if (!product) return <p>Product not found</p>;
+  if (!product) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <p>Product not found</p>
+      </div>
+    );
+  }
 
   const category = categoryById(product.categoryId);
-
   const hasDiscount =
     product.discont_price && product.discont_price < product.price;
   const displayPrice = product.discont_price || product.price;
-  const appendEllipsis = (text) =>
-    text?.length > maxShortenedLength
-      ? text.slice(0, maxShortenedLength).trim() + "..."
+
+  const formatDescription = (text) => {
+    return text?.length > maxShortenedLength
+      ? `${text.slice(0, maxShortenedLength).trim()}...`
       : text;
+  };
+
+  const handleQuantityChange = (amount) => {
+    setQuantity((prevQuantity) => Math.max(1, prevQuantity + amount));
+  };
+
+  const toggleTextShortened = () => setTextShortened((prev) => !prev);
 
   return (
     <>
@@ -74,9 +89,7 @@ export default function ProductPage() {
           </div>
           <div className={styles.countAndButton}>
             <div className={styles.cartPageItemInfoLeftBtnCounter}>
-              <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>
-                -
-              </button>
+              <button onClick={() => handleQuantityChange(-1)}>-</button>
               <input
                 type="text"
                 value={quantity}
@@ -84,7 +97,7 @@ export default function ProductPage() {
                   setQuantity(Math.max(1, Number(e.target.value) || 1))
                 }
               />
-              <button onClick={() => setQuantity(quantity + 1)}>+</button>
+              <button onClick={() => handleQuantityChange(1)}>+</button>
             </div>
             <Button
               initialText="Add to cart"
@@ -93,16 +106,17 @@ export default function ProductPage() {
               style={{ width: "316px" }}
             />
           </div>
+
           {product.description && (
             <div className={styles.description}>
               <h4>Description</h4>
               <p>
                 {isTextShortened
-                  ? appendEllipsis(product.description)
+                  ? formatDescription(product.description)
                   : product.description}
               </p>
               {product.description.length > maxShortenedLength && (
-                <button onClick={() => setTextShortened(!isTextShortened)}>
+                <button onClick={toggleTextShortened}>
                   {isTextShortened ? "Read more" : "Read less"}
                 </button>
               )}
@@ -112,4 +126,6 @@ export default function ProductPage() {
       </section>
     </>
   );
-}
+};
+
+export default ProductPage;

@@ -32,7 +32,6 @@ export default function DiscountForm() {
   } = useForm();
 
   useEffect(() => {
-    // reset
     useShoppingCartStore.getState().resetDiscount();
   }, []);
 

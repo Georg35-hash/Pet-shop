@@ -1,19 +1,12 @@
 import styles from "../AllCategoriesPage/AllCategories.module.css";
 import CategoryCard from "../../components/CategoryCard/CategoryCard.jsx";
-import { useEffect } from "react";
 import { CircularProgress } from "@mui/material";
 import useCategoryStore from "../../zustand/stores/categories";
 import NavigationRow from "../../components/NavRow/NavRow.jsx";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.jsx";
 
 export default function AllCategories() {
-  const { categories, loading, error, fetchCategories } = useCategoryStore();
-
-  useEffect(() => {
-    if (categories.length === 0) {
-      fetchCategories(); // Load categories when mont the page
-    }
-  }, [categories, fetchCategories]);
+  const { categories, loading, error } = useCategoryStore();
 
   if (loading) {
     return (

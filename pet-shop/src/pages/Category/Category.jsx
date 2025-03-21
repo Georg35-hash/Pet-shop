@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import useProductStore from "../../zustand/stores/products.js";
 import useCategoryStore from "../../zustand/stores/categories.js";
 
-import Filters from "../../components/Filter/Filter.jsx";
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.jsx";
 import NavigationRow from "../../components/NavRow/NavRow.jsx";
@@ -36,7 +35,6 @@ export default function Category() {
       />
       <section>
         <SectionTitle content={category ? category.title : "Loading..."} />
-        <Filters products={products} />
         <div className={styles.cards}>
           {productsByCategory.length > 0 ? (
             productsByCategory.map((product) => (

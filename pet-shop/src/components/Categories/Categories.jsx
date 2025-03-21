@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "../Categories/Categories.module.css";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
@@ -9,7 +9,7 @@ import NavigationButton from "../NavButton/NavButton";
 import { Link, NavLink } from "react-router-dom";
 
 export default function Categories() {
-  const { categories, loading, error, fetchCategories } = useCategoryStore();
+  const { categories, loading, error } = useCategoryStore();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const xs = useMediaQuery("(max-width:600px)");
@@ -17,10 +17,6 @@ export default function Categories() {
   const md = useMediaQuery("(min-width:900px) and (max-width:1200px)");
 
   const visibleCatSlide = xs ? 1 : sm ? 2 : md ? 3 : 4;
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + visibleCatSlide) % categories.length);
@@ -31,15 +27,6 @@ export default function Categories() {
       (prev) => (prev - visibleCatSlide + categories.length) % categories.length
     );
   };
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "ArrowRight") nextSlide();
-      if (event.key === "ArrowLeft") prevSlide();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
   if (loading)
     return (
@@ -64,8 +51,8 @@ export default function Categories() {
           {categories
             .slice(activeIndex, activeIndex + visibleCatSlide)
             .map((category) => (
-              <NavLink to="/categories">
-                <li className={styles.categoriesRenderItem} key={category.id}>
+              <NavLink to="/categories" key={category.id}>
+                <li className={styles.categoriesRenderItem}>
                   <img
                     className={styles.categoriesRenderImage}
                     src={`http://localhost:3333${category.image}`}
