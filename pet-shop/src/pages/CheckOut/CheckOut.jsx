@@ -10,8 +10,53 @@ import { send } from "../../zustand/services/order";
 import useUserStore from "../../zustand/stores/user";
 import Button from "../../components/Button/Button";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-
 import NavigationButton from "../../components/NavButton/NavButton";
+
+const CartItem = ({
+  product,
+  decrementCount,
+  incrementCount,
+  updateQuantity,
+  remove,
+}) => (
+  <li key={product.id} className={styles.cartPageItem}>
+    <div className={styles.cartPageItemImg}>
+      <img src={`http://localhost:3333${product.image}`} alt={product.title} />
+    </div>
+    <div className={styles.cartPageItemInfo}>
+      <div className={styles.cartPageItemInfoLeft}>
+        <h4>{product.title}</h4>
+        <div className={styles.cartPageItemInfoLeftPrice}>
+          <div className={styles.cartPageItemInfoLeftPricePrice}>
+            <span className={styles.discountPrice}>
+              $
+              {(
+                (product.discont_price ?? product.price) * product.count
+              ).toFixed(2)}
+            </span>
+          </div>
+        </div>
+        <div className={styles.cartPageItemInfoLeftBtnCounter}>
+          <button onClick={() => decrementCount(product.id)}>-</button>
+          <input
+            type="text"
+            value={product.count}
+            onChange={(e) => updateQuantity(product.id, Number(e.target.value))}
+          />
+          <button onClick={() => incrementCount(product.id)}>+</button>
+        </div>
+      </div>
+      <div className={styles.delButtonCont}>
+        <IconButton
+          className={styles.deleteButton}
+          onClick={() => remove(product.id)}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </div>
+    </div>
+  </li>
+);
 
 export default function CheckOut() {
   const user = useUserStore((state) => state.user);
@@ -28,10 +73,17 @@ export default function CheckOut() {
     isShown: false,
     title: "Congratulations!",
     message:
-      "Your order has been successfully placed on the website.\n\nA manager will contact you shortly to confirm your order.",
+      "Your order has been successfully placed. A manager will contact you shortly.",
   });
 
   const isCartEmpty = Object.keys(products).length === 0;
+
+  const handleOrderSubmit = async () => {
+    const result = await send(user, products);
+    if (result) {
+      setNotification({ ...notification, isShown: true });
+    }
+  };
 
   return (
     <main>
@@ -44,7 +96,6 @@ export default function CheckOut() {
             setNotification={setNotification}
             onClose={() => clear()}
           />
-
           <NavigationButton
             text="Back to the store"
             style={{ maxWidth: 160 }}
@@ -59,7 +110,6 @@ export default function CheckOut() {
                 initialText="Continue Shopping"
                 clickedText="Redirecting..."
                 onClick={() => navigate("/products")}
-                dependencies={{}}
                 style={{
                   width: "313px",
                   marginTop: "32px",
@@ -71,67 +121,18 @@ export default function CheckOut() {
             <>
               <ul className={styles.cartPageItemsBox}>
                 {Object.values(products).map((product) => (
-                  <li key={product.id} className={styles.cartPageItem}>
-                    <div className={styles.cartPageItemImg}>
-                      <img
-                        src={`http://localhost:3333${product.image}`}
-                        alt={product.title}
-                      />
-                    </div>
-                    <div className={styles.cartPageItemInfo}>
-                      <div className={styles.cartPageItemInfoLeft}>
-                        <h4>{product.title}</h4>
-                        <div className={styles.cartPageItemInfoLeftPrice}>
-                          <div
-                            className={styles.cartPageItemInfoLeftPricePrice}
-                          >
-                            <span className={styles.discountPrice}>
-                              $
-                              {(
-                                (product.discont_price != null
-                                  ? product.discont_price
-                                  : product.price) * product.count
-                              ).toFixed(2)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className={styles.cartPageItemInfoLeftBtnCounter}>
-                          <button onClick={() => decrementCount(product.id)}>
-                            -
-                          </button>
-                          <input
-                            type="text"
-                            value={product.count}
-                            onChange={(e) =>
-                              updateQuantity(product.id, Number(e.target.value))
-                            }
-                          />
-                          <button onClick={() => incrementCount(product.id)}>
-                            +
-                          </button>
-                        </div>
-                      </div>
-                      <div className={styles.delButtonCont}>
-                        <IconButton
-                          className={styles.deleteButton}
-                          onClick={() => remove(product.id)}
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </div>
-                    </div>
-                  </li>
+                  <CartItem
+                    key={product.id}
+                    product={product}
+                    decrementCount={decrementCount}
+                    incrementCount={incrementCount}
+                    updateQuantity={updateQuantity}
+                    remove={remove}
+                  />
                 ))}
               </ul>
 
-              <OrderForm
-                onSubmit={async () => {
-                  const result = await send(user, products);
-                  if (result) {
-                    setNotification({ ...notification, isShown: true });
-                  }
-                }}
-              />
+              <OrderForm onSubmit={handleOrderSubmit} />
             </>
           )}
         </div>

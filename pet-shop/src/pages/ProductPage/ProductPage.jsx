@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
+import { Skeleton } from "@mui/material";
 import Button from "../../components/Button/Button";
 import NavigationRow from "../../components/NavRow/NavRow";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
@@ -12,21 +12,56 @@ const maxShortenedLength = 700;
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const { loading, error, products, fetchProductById } = useProductsStore();
+  const { products, fetchProductById } = useProductsStore();
   const categoryById = useCategoryStore((state) => state.fetchCategoryByID);
   const push = useShoppingCartStore((state) => state.push);
 
   const [quantity, setQuantity] = useState(1);
   const [isTextShortened, setTextShortened] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchProductById(productId);
+    setLoading(true);
+    setTimeout(() => setLoading(false), 2000);
   }, [fetchProductById, productId]);
 
-  if (loading) return <CircularProgress />;
-  if (error) return <p>Error: {error}</p>;
-
   const product = products.find((p) => p.id === Number(productId));
+
+  if (loading) {
+    return (
+      <section
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Skeleton
+          variant="rectangular"
+          width={300}
+          height={300}
+          style={{ marginBottom: 20 }}
+        />
+
+        <Skeleton
+          variant="text"
+          width="40%"
+          height={30}
+          style={{ marginBottom: 10 }}
+        />
+        <Skeleton
+          variant="text"
+          width="50%"
+          height={30}
+          style={{ marginBottom: 10 }}
+        />
+        <Skeleton variant="rectangular" width={316} height={50} />
+      </section>
+    );
+  }
+
   if (!product) {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -53,7 +88,7 @@ const ProductPage = () => {
   const toggleTextShortened = () => setTextShortened((prev) => !prev);
 
   return (
-    <>
+    <main>
       <NavigationRow
         buttons={[
           { text: "Main Page", route: "/" },
@@ -94,7 +129,7 @@ const ProductPage = () => {
                 type="text"
                 value={quantity}
                 onChange={(e) =>
-                  setQuantity(Math.max(1, Number(e.target.value) || 1))
+                  setQuantity(Math.max(1, Number(e.target.value)))
                 }
               />
               <button onClick={() => handleQuantityChange(1)}>+</button>
@@ -124,7 +159,7 @@ const ProductPage = () => {
           )}
         </div>
       </section>
-    </>
+    </main>
   );
 };
 
