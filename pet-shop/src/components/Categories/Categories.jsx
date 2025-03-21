@@ -3,7 +3,7 @@ import styles from "../Categories/Categories.module.css";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import useCategoryStore from "../../zustand/stores/categories";
-import LoadingErrorHandler from "../LoadingErrorHandler/LoadingErrorHandler"; // Импортируем новый компонент
+import LoadingErrorHandler from "../LoadingErrorHandler/LoadingErrorHandler";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import NavigationButton from "../NavButton/NavButton";
 import { NavLink } from "react-router-dom";
@@ -37,7 +37,11 @@ export default function Categories() {
           <div className={styles.coupleContainer}>
             <SectionTitle content="Categories" />
             <span className={styles.coupleLine}></span>
-            <NavigationButton text="All categories" style={{ maxWidth: 140 }} />
+            <NavigationButton
+              text="All categories"
+              style={{ maxWidth: 140 }}
+              route="/categories"
+            />
           </div>
 
           <div className={styles.coupleSliderWrapper}>

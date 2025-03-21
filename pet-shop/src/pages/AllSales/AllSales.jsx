@@ -21,7 +21,7 @@ export default function AllSales() {
               { text: "All Sales", route: "/sales" },
             ]}
           />
-          <section className={styles.sales}>
+          <section className={`${styles.sales} hidden`}>
             <SectionTitle content="Discounted Items" />
             <Filters
               features={{ price: true, sorted: true }}

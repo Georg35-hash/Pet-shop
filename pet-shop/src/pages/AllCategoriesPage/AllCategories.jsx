@@ -20,7 +20,7 @@ export default function AllCategories() {
               { text: "Categories", route: "/categories" },
             ]}
           />
-          <section className={styles.categories}>
+          <section className={`${styles.bannerSection} hidden`}>
             <SectionTitle content="Categories" />
             <div className={styles.cards}>
               {categories.map((category) => (

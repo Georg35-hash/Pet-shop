@@ -5,7 +5,7 @@ import NavigationButton from "../NavButton/NavButton";
 export default function NavigationRow({ buttons, style }) {
   const updatedButtons = buttons.map((button, index) => ({
     ...button,
-    isPrimary: index === buttons.length - 1, // without Mutation
+    isPrimary: index === buttons.length - 1,
   }));
 
   const truncateText = (text, maxLength = 10) =>

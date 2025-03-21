@@ -7,20 +7,16 @@ import useShoppingCartStore from "../../zustand/stores/shoppingCart";
 import { useMediaQuery } from "@mui/material";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import NavigationButton from "../NavButton/NavButton";
-import LoadingErrorHandler from "../LoadingErrorHandler/LoadingErrorHandler"; // Импортируем компонент для обработки загрузки и ошибок
+import LoadingErrorHandler from "../LoadingErrorHandler/LoadingErrorHandler";
 
 export default function Products() {
   const [isAnimating, setIsAnimating] = useState(false);
-  const { products, loading, error, fetchProducts } = useProductStore();
+  const { products, loading, error } = useProductStore();
   const [activeIndProducts, setActiveIndProducts] = useState(0);
   const [isCardHovered, setCardHovered] = useState({});
   const [addedToCart, setAddedToCart] = useState({});
   const animationTimeout = useRef(null);
   const push = useShoppingCartStore((state) => state.push);
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   useEffect(() => {
     return () => clearTimeout(animationTimeout.current);
@@ -41,7 +37,7 @@ export default function Products() {
 
   const nextSlide = () => {
     setIsAnimating(true);
-    clearTimeout(animationTimeout.current); // Clear before new call
+    clearTimeout(animationTimeout.current);
     animationTimeout.current = setTimeout(() => {
       setActiveIndProducts((prev) => (prev + 1) % filteredProducts.length);
       setIsAnimating(false);
@@ -68,7 +64,7 @@ export default function Products() {
           <div className={styles.coupleContainer}>
             <SectionTitle content="Sale" />
             <span className={styles.coupleLine}></span>
-            <NavigationButton text="All sales" />
+            <NavigationButton text="All sales" route="/allsales" />
           </div>
 
           <div

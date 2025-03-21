@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../NavButton/NavButton.module.css";
 
 export default function NavigationButton({
@@ -11,8 +12,8 @@ export default function NavigationButton({
   }`;
 
   return (
-    <a href={route} className={classes} style={style}>
+    <Link to={route} className={classes} style={style}>
       {text}
-    </a>
+    </Link>
   );
 }

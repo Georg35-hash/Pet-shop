@@ -7,15 +7,13 @@ export default function AnimationProvider({ children, threshold = 0.1 }) {
   useEffect(() => {
     const elements = document.querySelectorAll(".hidden");
 
-    console.log("🔍 Elements found:", elements);
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
           } else {
-            entry.target.classList.remove("visible"); // 🔥
+            entry.target.classList.remove("visible");
           }
         });
       },

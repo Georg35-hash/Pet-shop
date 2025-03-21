@@ -22,7 +22,7 @@ export default function AllProducts() {
               { text: "All products", route: "/products" },
             ]}
           />
-          <section className={styles.products}>
+          <section className={`${styles.products} hidden`}>
             <SectionTitle content="All products" />
             <Filter
               products={products}

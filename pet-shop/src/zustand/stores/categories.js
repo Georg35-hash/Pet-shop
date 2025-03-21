@@ -25,7 +25,6 @@ const useCategoryStore = create(
               state.loading = false;
             });
           } catch (err) {
-            console.error("Failed to fetch categories:", err);
             set((state) => {
               state.error = err.message;
               state.loading = false;

@@ -2,13 +2,11 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3333/categories";
 
-// handle error per API
 export const get = async () => {
   try {
     const response = await axios.get(`${API_URL}/all`);
     return response.data;
   } catch (error) {
-    // Return the error with details
     throw new Error(
       error.response ? error.response.data.message : error.message
     );

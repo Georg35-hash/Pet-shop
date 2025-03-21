@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../CheckOut/CheckOut.module.css";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import Notifi from "../../components/Notif/Notif";
@@ -34,6 +34,7 @@ const CartItem = ({
                 (product.discont_price ?? product.price) * product.count
               ).toFixed(2)}
             </span>
+            <span className={styles.secondaryPrice}>${product.price}</span>
           </div>
         </div>
         <div className={styles.cartPageItemInfoLeftBtnCounter}>
@@ -99,6 +100,7 @@ export default function CheckOut() {
           <NavigationButton
             text="Back to the store"
             style={{ maxWidth: 160 }}
+            route="/"
           />
         </div>
 

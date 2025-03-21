@@ -45,15 +45,6 @@
   justify-content: space-between;
   width: 100%;
 }
-.cartPageEmptyWarning {
-  display: flex;
-  margin: 10px 0 32px;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 26px;
-  text-align: left;
-}
-
 .shoppingCartNavi {
   width: clamp(270px, 20vw, 313px);
   height: 58px;
@@ -71,7 +62,6 @@
   align-items: center;
   white-space: nowrap;
 }
-
 .shoppingCartNavi:hover {
   color: #ffffff;
 }
@@ -97,6 +87,13 @@
   color: #ffffff;
 }
 
+.secondaryPrice {
+  font-size: 20px;
+  color: #8b8b8b;
+  font-weight: 500;
+  text-decoration: line-through;
+  margin-left: 16px;
+}
 .cartPageItemsBox {
   display: flex;
   gap: 16px;
@@ -199,9 +196,9 @@
 
 .cartPageItemInfoLeftPricePrice {
   display: flex;
+
   align-items: center;
   gap: 16px;
-  margin-left: 22px;
 }
 
 .discountPrice {
@@ -264,4 +261,13 @@
 .deleteButton {
   width: 20px;
   height: 20px;
+}
+
+@media (max-width: 1110px) {
+  .cartsContainer {
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    flex-direction: column;
+  }
 }

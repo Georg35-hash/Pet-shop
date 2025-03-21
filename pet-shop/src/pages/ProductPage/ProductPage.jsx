@@ -151,7 +151,19 @@ const ProductPage = () => {
                   : product.description}
               </p>
               {product.description.length > maxShortenedLength && (
-                <button onClick={toggleTextShortened}>
+                <button
+                  onClick={toggleTextShortened}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    fontFamily: "inherit",
+
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    padding: 0,
+                    fontSize: "inherit",
+                  }}
+                >
                   {isTextShortened ? "Read more" : "Read less"}
                 </button>
               )}

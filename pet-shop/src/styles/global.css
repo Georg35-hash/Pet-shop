@@ -18,7 +18,7 @@ a {
 }
 
 a:hover {
-  animation: bounce 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: bounce 1.2s cubic-bezier(0.35, 1, 0.5, 1) forwards;
 }
 
 @keyframes bounce {
