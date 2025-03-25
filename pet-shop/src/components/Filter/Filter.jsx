@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
+import { Checkbox } from "@mui/material";
 import styles from "../Filter/Filter.module.css";
-import CheckedIcon from "../../assets/all-products/checkbox-checked.svg";
 import useProductStore from "../../zustand/stores/products";
 
 export default function Filter({
@@ -13,6 +13,8 @@ export default function Filter({
     discounted: onlyDiscounted,
     sorted: "1",
   });
+
+  const [message, setMessage] = useState("");
 
   const { products, setFilteredProducts } = useProductStore();
 
@@ -74,6 +76,12 @@ export default function Filter({
         break;
     }
 
+    if (filteredProducts.length === 0) {
+      setMessage("No filters.");
+    } else {
+      setMessage("");
+    }
+
     setFilteredProducts(filteredProducts);
   };
 
@@ -109,33 +117,55 @@ export default function Filter({
       {features.discounted && !onlyDiscounted && (
         <>
           <label htmlFor="discounted">Discounted items</label>
-          <input
-            type="checkbox"
+          <Checkbox
             id="discounted"
             checked={filters.discounted}
             onChange={handleChange}
+            icon={
+              <span
+                style={{
+                  width: 36,
+                  height: 36,
+                  display: "block",
+                  borderRadius: 8,
+                  border: "1px solid #dddddd",
+                }}
+              />
+            }
+            checkedIcon={
+              <span
+                style={{
+                  width: 36,
+                  height: 36,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: 8,
+                  backgroundColor: "#007BFF",
+                  color: "white",
+                }}
+              >
+                ✔
+              </span>
+            }
           />
-          {filters.discounted && (
-            <img
-              className={styles.checkboxIcon}
-              src={CheckedIcon}
-              alt="Checked"
-            />
-          )}
         </>
       )}
       {features.sorted && (
         <>
           <label htmlFor="sorted">Sorted</label>
           <select id="sorted" value={filters.sorted} onChange={handleChange}>
-            <option value="1" disabled>
-              by default
-            </option>
+            <option value="1">by default</option>
             <option value="2">newest</option>
             <option value="3">price high-low</option>
             <option value="4">price low-high</option>
           </select>
         </>
+      )}
+      {message && (
+        <div>
+          <p>{message}</p>
+        </div>
       )}
     </form>
   );

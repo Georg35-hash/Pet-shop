@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../CheckOut/CheckOut.module.css";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import Notifi from "../../components/Notif/Notif";

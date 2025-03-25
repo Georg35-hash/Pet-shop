@@ -13,7 +13,6 @@ export default function Category() {
     useProductStore();
   const categoryById = useCategoryStore((state) => state.fetchCategoryByID);
 
-  // Загружаем продукты, если их нет в состоянии
   if (!products.length) {
     fetchProducts();
   }
@@ -31,14 +30,16 @@ export default function Category() {
               { text: "Main page", route: "/" },
               { text: "Categories", route: "/categories" },
               {
-                text: category ? category.title : "Loading...",
+                text: category ? category.title : "Not found",
                 route: `/categories/${categoryId}`,
               },
             ]}
-            style={{ width: "400px", maxWidth: "100%" }}
+            style={{ width: "700px", maxWidth: "100%" }}
           />
           <section>
-            <SectionTitle content={category ? category.title : "Loading..."} />
+            <SectionTitle
+              content={category ? category.title : "Title was not found"}
+            />
             <div className={styles.cards}>
               {productsByCategory.length > 0 ? (
                 productsByCategory.map((product) => (

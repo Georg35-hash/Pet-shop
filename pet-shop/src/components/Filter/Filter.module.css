@@ -1,6 +1,8 @@
 .filters {
-  display: flex;
+  display: block;
   align-items: center;
+  justify-content: flex-start;
+  position: relative;
 }
 
 .filters > label {
@@ -26,35 +28,22 @@
   width: 112px;
 }
 
-.filters > input[type="checkbox"] {
-  appearance: none;
-  width: 36px;
-  height: 36px;
-  outline: 1px solid #dddddd;
-  border-radius: 6px;
-}
-
-.filters > input[type="checkbox"]:hover {
-  cursor: pointer;
-}
-
-.filters > .checkboxIcon {
-  position: relative;
-  left: -39px;
-  pointer-events: none;
-  margin-right: -36px;
-}
-
 .filters > select {
   width: 200px;
   padding: 8px 16px;
-  padding-right: 0px;
   font-size: 16px;
   font-weight: 500;
   color: #282828;
   background: transparent;
   border: 1px solid #282828;
   border-radius: 6px;
+}
+
+@media (max-width: 1100px) {
+  .filters {
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
@@ -76,15 +65,6 @@
 
   .filters > input[type="text"] {
     width: calc(100% - 8px);
-    padding: 8px 0px;
-    padding-left: 8px;
-  }
-}
-@media (max-width: 1100px) {
-  .filters > .checkboxIcon {
-    position: relative;
-    left: 0px;
-    top: -39px;
-    pointer-events: none;
+    padding: 8px;
   }
 }

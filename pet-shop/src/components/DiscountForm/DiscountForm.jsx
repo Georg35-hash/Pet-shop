@@ -9,12 +9,22 @@ import Notifi from "../Notif/Notif";
 const textFieldStyles = {
   mt: 2,
   width: "100%",
-  "& input": { caretColor: "white" },
+  color: "white",
+  "& input": {
+    caretColor: "white",
+    color: "white",
+  },
   "& .MuiOutlinedInput-root": {
     "& fieldset": { borderColor: "white" },
+    "&:hover fieldset": { borderColor: "white" },
     "&.Mui-focused fieldset": { borderColor: "white" },
   },
   "& .MuiFormLabel-root": { color: "white" },
+  "& .MuiFormLabel-root.Mui-focused": { color: "white" },
+  "& .MuiInputBase-root": { color: "white" },
+  "& .MuiOutlinedInput-input": { color: "white" },
+  "& .MuiOutlinedInput-notchedOutline": { borderColor: "white" },
+  "& .Mui-disabled": { color: "white", "-webkit-text-fill-color": "white" },
 };
 
 export default function DiscountForm() {

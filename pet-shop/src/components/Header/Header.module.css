@@ -1,24 +1,21 @@
-ul {
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  gap: 32px;
+.navLink {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
 }
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+.navLink:hover {
+  color: #0d50ff;
 }
-a {
-  cursor: pointer;
-}
-.iconsContainer {
-  display: flex;
-  justify-content: center;
-  margin: 41px 40px 39px;
-}
+
 .icons {
-  width: 44px;
-  height: 48px;
+  width: 40px;
+  height: auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+.icons:hover {
+  transform: scale(1.1);
 }

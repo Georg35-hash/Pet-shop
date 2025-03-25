@@ -20,7 +20,6 @@
 .productsTitle {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   max-width: 202px;
   font: 500 20px / 1.3;
   text-align: center;
@@ -34,6 +33,18 @@
   font-family: sans-serif;
   color: #282828;
 }
+@keyframes colorShift {
+  0% {
+    background-color: #0d50ff;
+  }
+  50% {
+    background-color: #6a42ff;
+  }
+  100% {
+    background-color: #0d50ff;
+  }
+}
+
 .discountBorder {
   position: absolute;
   width: 67px;
@@ -46,6 +57,7 @@
   font-size: 20px;
   font-weight: 600;
   padding: 4px 8px;
+  animation: colorShift 2s infinite ease-in-out;
 }
 .secondaryPrice {
   font-size: 20px;

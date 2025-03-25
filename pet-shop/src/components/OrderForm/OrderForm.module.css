@@ -2,7 +2,7 @@
   margin-left: 32px;
   max-width: 548px;
   background-color: #f1f3f4;
-  height: 750px;
+  height: auto;
   border-radius: 12px;
   padding: 32px;
 }
@@ -83,12 +83,74 @@
   color: red;
   font-size: 14px;
 }
+.discountAppliedBox {
+  background-color: #dfffd8;
+  color: #2d6a4f;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
 
 @media (max-width: 1100px) {
-  .orderForm > form {
+  .orderForm {
+    margin-left: 0;
     max-width: 100%;
+    padding: 24px;
   }
+
+  .orderForm > h3 {
+    font-size: 32px;
+  }
+
+  .orderForm > p {
+    font-size: 32px;
+  }
+
+  .orderForm > .price > span {
+    font-size: 32px;
+  }
+
   .orderForm > .price > span.price {
     font-size: 48px;
+  }
+
+  .orderForm > form {
+    width: 100%;
+  }
+
+  .orderForm > form > input[type="text"],
+  .orderForm > form > input[type="submit"] {
+    font-size: 18px;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .orderForm {
+    padding: 16px;
+  }
+
+  .orderForm > h3 {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .orderForm > p {
+    font-size: 24px;
+  }
+
+  .orderForm > .price > span {
+    font-size: 24px;
+  }
+
+  .orderForm > .price > span.price {
+    font-size: 36px;
+  }
+
+  .orderForm > form > input[type="text"],
+  .orderForm > form > input[type="submit"] {
+    font-size: 16px;
   }
 }

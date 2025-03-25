@@ -71,7 +71,6 @@ export default function OrderForm({ onSubmit }) {
           type="text"
           placeholder="Name"
           onChange={onChange}
-          className={errors.username ? styles.inputError : ""}
         />
         {errors.username && (
           <p className={styles.error}>{errors.username.message}</p>
@@ -92,7 +91,6 @@ export default function OrderForm({ onSubmit }) {
           type="text"
           placeholder="Phone number"
           onChange={onChange}
-          className={errors.phoneNumber ? styles.inputError : ""}
         />
         {errors.phoneNumber && (
           <p className={styles.error}>{errors.phoneNumber.message}</p>
@@ -111,7 +109,13 @@ export default function OrderForm({ onSubmit }) {
           onChange={onChange}
         />
         {errors.email && <p className={styles.error}>{errors.email.message}</p>}
-
+        {useShoppingCartStore.getState().userReceivedDiscount && (
+          <div className={styles.discountAppliedBox}>
+            <p className={styles.discountAppliedMessage}>
+              ✅ Your 5% discount has been applied!
+            </p>
+          </div>
+        )}
         <input type="submit" value="Order" />
       </form>
     </div>

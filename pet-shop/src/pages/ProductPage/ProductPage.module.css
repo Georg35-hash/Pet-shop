@@ -54,18 +54,22 @@
 }
 .discountPriceCont {
   position: relative;
+  display: inline-block;
 }
 .discountBorder {
-  position: absolute;
   width: 67px;
   text-align: center;
   border-radius: 6px;
-  transform: translate(220%, -110%);
+  position: absolute;
+  margin-right: -20px;
+  right: 0;
+  top: 0;
   background-color: #0d50ff;
   color: white;
   font-size: 20px;
   font-weight: 600;
   padding: 4px 8px;
+  animation: colorShift 2s infinite ease-in-out;
 }
 .secondaryPrice {
   font-size: 20px;
@@ -75,7 +79,9 @@
   margin-left: 16px;
 }
 .productsContent {
-  width: 316px;
+  width: 210px;
+  min-height: 50px;
+  position: relative;
 }
 
 .cartPageItemInfoLeftBtnCounter {
@@ -112,7 +118,7 @@
   text-align: center;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
   .productSection {
     flex-direction: column;
   }

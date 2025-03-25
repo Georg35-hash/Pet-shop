@@ -10,7 +10,7 @@ import styles from "../ProductPage/ProductPage.module.css";
 
 const maxShortenedLength = 700;
 
-const ProductPage = () => {
+export default function ProductPage() {
   const { productId } = useParams();
   const { products, fetchProductById } = useProductsStore();
   const categoryById = useCategoryStore((state) => state.fetchCategoryByID);
@@ -32,6 +32,7 @@ const ProductPage = () => {
     return (
       <section
         style={{
+          marginTop: 40,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -99,7 +100,7 @@ const ProductPage = () => {
           },
           { text: product?.title, route: `/products/${product.id}` },
         ]}
-        style={{ width: "600px", maxWidth: "100%" }}
+        style={{ width: "700px", maxWidth: "100%" }}
       />
 
       <section className={styles.productSection}>
@@ -109,19 +110,20 @@ const ProductPage = () => {
             alt={product.title}
           />
         )}
-        <div>
+        <div className={styles.discountPriceCont}>
           <h3>{product.title}</h3>
-          {hasDiscount && (
-            <span className={styles.discountBorder}>
-              -{Math.floor(100 - (displayPrice * 100) / product.price)}%
-            </span>
-          )}
           <div className={styles.productsContent}>
             <span className={styles.primaryPrice}>${displayPrice}</span>
             {hasDiscount && (
-              <span className={styles.secondaryPrice}>${product.price}</span>
+              <>
+                <span className={styles.secondaryPrice}>${product.price}</span>
+                <span className={styles.discountBorder}>
+                  -{Math.floor(100 - (displayPrice * 100) / product.price)}%
+                </span>
+              </>
             )}
           </div>
+
           <div className={styles.countAndButton}>
             <div className={styles.cartPageItemInfoLeftBtnCounter}>
               <button onClick={() => handleQuantityChange(-1)}>-</button>
@@ -173,6 +175,4 @@ const ProductPage = () => {
       </section>
     </main>
   );
-};
-
-export default ProductPage;
+}

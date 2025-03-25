@@ -9,14 +9,13 @@ import LoadingErrorHandler from "../../components/LoadingErrorHandler/LoadingErr
 export default function AllProducts() {
   const { products, filteredProducts, setFilteredProducts, loading, error } =
     useProductStore();
-
   return (
     <main>
       <LoadingErrorHandler loading={loading} error={error} />
       {!loading && !error && (
         <>
           <NavigationRow
-            style={{ width: "270px", maxWidth: "100%" }}
+            style={{ width: "250px", maxWidth: "100%" }}
             buttons={[
               { text: "Main page", route: "/" },
               { text: "All products", route: "/products" },

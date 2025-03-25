@@ -26,14 +26,11 @@ export default function Products() {
     (product) => product.discont_price != null
   );
 
-  const isXs = useMediaQuery("(max-width:600px)"); // xs
-  const isSm = useMediaQuery("(max-width:900px)"); // sm
-  const isMd = useMediaQuery("(max-width:1200px)"); // md
+  const xs = useMediaQuery("(max-width:600px)");
+  const sm = useMediaQuery("(min-width:600px) and (max-width:900px)");
+  const md = useMediaQuery("(min-width:900px) and (max-width:1200px)");
 
-  let visibleProSlide = 4;
-  if (isMd) visibleProSlide = 3;
-  if (isSm) visibleProSlide = 2;
-  if (isXs) visibleProSlide = 1;
+  let visibleProSlide = xs ? 1 : sm ? 2 : md ? 3 : 4;
 
   const nextSlide = () => {
     setIsAnimating(true);

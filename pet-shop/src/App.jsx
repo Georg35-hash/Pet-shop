@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <Router>
-      <AnimationProvider threshold={0.1}>
+      <AnimationProvider threshold={0.02}>
         <Box sx={{ margin: "0 auto", maxWidth: "1440px" }}>
           <CssBaseline />
           <Header />
