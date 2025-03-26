@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-export default function AnimationProvider({ children, threshold = 0.1 }) {
+export default function AnimationProvider({ children, threshold = 0.02 }) {
   const location = useLocation();
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    setLoaded(true); // Устанавливаем флаг, когда компоненты загружены
+
     const elements = document.querySelectorAll(".hidden");
 
     const observer = new IntersectionObserver(
@@ -27,5 +30,5 @@ export default function AnimationProvider({ children, threshold = 0.1 }) {
     };
   }, [location.pathname, threshold]);
 
-  return <>{children}</>;
+  return <>{loaded && children}</>;
 }

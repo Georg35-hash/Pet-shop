@@ -22,7 +22,7 @@ export default function Products() {
   const theme = useTheme();
 
   useEffect(() => {
-    return () => clearTimeout(animationTimeout.current);
+    return () => clearTimeout(animationTimeout);
   }, []);
 
   const filteredProducts = products.filter(
@@ -37,22 +37,16 @@ export default function Products() {
 
   const nextSlide = () => {
     setIsAnimating(true);
-    clearTimeout(animationTimeout.current);
-    animationTimeout.current = setTimeout(() => {
-      setActiveIndProducts((prev) => (prev + 1) % filteredProducts.length);
-      setIsAnimating(false);
-    }, 200);
+    setActiveIndProducts((prev) => (prev + 1) % filteredProducts.length);
+    setIsAnimating(false);
   };
 
   const prevSlide = () => {
     setIsAnimating(true);
-    clearTimeout(animationTimeout.current);
-    animationTimeout.current = setTimeout(() => {
-      setActiveIndProducts(
-        (prev) => (prev - 1 + filteredProducts.length) % filteredProducts.length
-      );
-      setIsAnimating(false);
-    }, 500);
+    setActiveIndProducts(
+      (prev) => (prev - 1 + filteredProducts.length) % filteredProducts.length
+    );
+    setIsAnimating(false);
   };
 
   return (
@@ -72,7 +66,7 @@ export default function Products() {
               isAnimating ? styles.animateSlide : ""
             }`}
           >
-            <KeyboardArrowLeft onClick={prevSlide} />
+            <KeyboardArrowLeft sx={{ cursor: "pointer" }} onClick={prevSlide} />
 
             <ul className={styles.productsRenderList}>
               {filteredProducts
@@ -122,6 +116,14 @@ export default function Products() {
                             ...prev,
                             [product.id]: true,
                           }));
+
+                          // Устанавливаем таймер для сброса состояния через 3 секунды
+                          setTimeout(() => {
+                            setAddedToCart((prev) => ({
+                              ...prev,
+                              [product.id]: false,
+                            }));
+                          }, 3000); // 3000 мс = 3 секунды
                         }}
                         style={{
                           opacity: isCardHovered[product.id] ? 1 : 0,
@@ -161,7 +163,10 @@ export default function Products() {
                 ))}
             </ul>
 
-            <KeyboardArrowRight onClick={nextSlide} />
+            <KeyboardArrowRight
+              sx={{ cursor: "pointer" }}
+              onClick={nextSlide}
+            />
           </div>
         </>
       )}

@@ -81,15 +81,17 @@
   transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
   opacity: 0;
 }
-
+.cardImage {
+  border-radius: 12px 12px 0px 0px;
+  width: 100%;
+  height: 284px;
+  object-fit: cover;
+  display: block;
+}
 .productCard:hover .cartButton {
   opacity: 1;
 }
 
 .cartButton.added {
   background-color: black;
-}
-
-.cardImage {
-  object-fit: contain;
 }

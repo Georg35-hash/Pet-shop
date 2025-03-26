@@ -30,6 +30,7 @@
 }
 
 .productsRenderImage {
+  border-radius: 12px 12px 0px 0px;
   width: 100%;
   height: 284px;
   object-fit: cover;

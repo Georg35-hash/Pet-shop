@@ -20,7 +20,7 @@ export default function useThemeMode() {
               }
             : {
                 background: { default: "#ffffff", paper: "#f5f5f5" },
-                text: { primary: "#000000", secondary: "#ffffff" },
+                text: { primary: "#000000", secondary: "#000000" },
               }),
         },
       }),

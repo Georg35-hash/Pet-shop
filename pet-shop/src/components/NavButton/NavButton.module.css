@@ -8,6 +8,7 @@
   border-radius: 8px;
   max-width: 110px;
   width: 100%;
+  font-size: clamp(10px, 1.5vw, 16px);
 }
 
 .navigationButton:hover {
