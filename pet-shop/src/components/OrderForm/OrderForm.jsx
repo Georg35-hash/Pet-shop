@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useUserStore from "../../zustand/stores/user";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
+import { useTheme } from "@mui/material/styles";
 
 export default function OrderForm({ onSubmit }) {
   const user = useUserStore((state) => state.user);
@@ -12,7 +13,7 @@ export default function OrderForm({ onSubmit }) {
 
   const totalCount = useShoppingCartStore((state) => state.totalCount);
   const totalPrice = useShoppingCartStore((state) => state.totalPrice);
-
+  const theme = useTheme();
   const {
     register,
     handleSubmit,
@@ -53,11 +54,11 @@ export default function OrderForm({ onSubmit }) {
 
   return (
     <div className={styles.orderForm}>
-      <h3>Order details</h3>
+      <h3 style={{ color: theme.palette.text.secondary }}>Order details</h3>
       <p>{totalCount()} items</p>
       <div className={styles.price}>
         <span>Total</span>
-        <span className={styles.price}>${totalPrice().toFixed(2)}</span>
+        <span className={styles.price}>${totalPrice().toFixed(2)}</span>{" "}
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input

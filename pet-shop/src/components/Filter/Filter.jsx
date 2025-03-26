@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Checkbox } from "@mui/material";
 import styles from "../Filter/Filter.module.css";
 import useProductStore from "../../zustand/stores/products";
-
+import { useTheme } from "@mui/material/styles";
 export default function Filter({
   features = { price: true, discounted: true, sorted: true },
   onlyDiscounted = false,
@@ -17,7 +17,7 @@ export default function Filter({
   const [message, setMessage] = useState("");
 
   const { products, setFilteredProducts } = useProductStore();
-
+  const theme = useTheme();
   useEffect(() => {
     applyFilters(filters);
   }, [filters, products]);
@@ -97,7 +97,9 @@ export default function Filter({
     <form className={styles.filters} onSubmit={(e) => e.preventDefault()}>
       {features.price && (
         <>
-          <label htmlFor="from">Price</label>
+          <label htmlFor="from" style={{ color: theme.palette.text.primary }}>
+            Price
+          </label>
           <input
             type="text"
             id="from"
@@ -116,7 +118,12 @@ export default function Filter({
       )}
       {features.discounted && !onlyDiscounted && (
         <>
-          <label htmlFor="discounted">Discounted items</label>
+          <label
+            htmlFor="discounted"
+            style={{ color: theme.palette.text.primary }}
+          >
+            Discounted items
+          </label>
           <Checkbox
             id="discounted"
             checked={filters.discounted}
@@ -153,18 +160,33 @@ export default function Filter({
       )}
       {features.sorted && (
         <>
-          <label htmlFor="sorted">Sorted</label>
-          <select id="sorted" value={filters.sorted} onChange={handleChange}>
-            <option value="1">by default</option>
-            <option value="2">newest</option>
-            <option value="3">price high-low</option>
-            <option value="4">price low-high</option>
+          <label htmlFor="sorted" style={{ color: theme.palette.text.primary }}>
+            Sorted
+          </label>
+          <select
+            style={{ color: theme.palette.text.primary }}
+            id="sorted"
+            value={filters.sorted}
+            onChange={handleChange}
+          >
+            <option style={{ color: theme.palette.text.secondary }} value="1">
+              by default
+            </option>
+            <option style={{ color: theme.palette.text.secondary }} value="2">
+              newest
+            </option>
+            <option style={{ color: theme.palette.text.secondary }} value="3">
+              price high-low
+            </option>
+            <option style={{ color: theme.palette.text.secondary }} value="4">
+              price low-high
+            </option>
           </select>
         </>
       )}
       {message && (
         <div>
-          <p>{message}</p>
+          <p style={{ color: theme.palette.text.primary }}>{message}</p>
         </div>
       )}
     </form>

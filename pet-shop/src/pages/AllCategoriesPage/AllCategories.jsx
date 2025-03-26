@@ -14,7 +14,10 @@ export default function AllCategories() {
       {!loading && !error && (
         <>
           <NavigationRow
-            style={{ width: "250px", maxWidth: "100%" }}
+            style={{
+              width: "250px",
+              maxWidth: "100%",
+            }}
             buttons={[
               { text: "Main page", route: "/" },
               { text: "Categories", route: "/categories" },

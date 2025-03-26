@@ -17,8 +17,8 @@ export default function AllSales() {
         <>
           <NavigationRow
             buttons={[
-              { text: "Main Page", route: "/" },
-              { text: "All Sales", route: "/sales" },
+              { text: "Main page", route: "/" },
+              { text: "All Sales", route: "/allsales" },
             ]}
           />
           <section className={`${styles.sales} hidden`}>

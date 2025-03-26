@@ -16,7 +16,9 @@ export default function NavigationRow({ buttons, style }) {
       {updatedButtons.map((button, index) => (
         <Fragment key={button.route || `${button.text}-${index}`}>
           <NavigationButton
-            style={{ maxWidth: "100%" }}
+            style={{
+              maxWidth: "100%",
+            }}
             text={truncateText(button.text)}
             route={button.route}
             isPrimary={button.isPrimary}

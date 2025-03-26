@@ -2,7 +2,7 @@ import styles from "../ProductCard/ProductCard.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
-
+import { useTheme } from "@mui/material/styles";
 export default function ProductCard({ product }) {
   const [isCardHovered, setCardHovered] = useState(false);
   const [addedToCart, setAddedToCart] = useState({});
@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
 
   const hasDiscount =
     product.discont_price != null && product.discont_price < product.price;
-
+  const theme = useTheme();
   return (
     <div
       className={styles.productCard}
@@ -51,8 +51,16 @@ export default function ProductCard({ product }) {
       />
 
       <div className={styles.productsContent}>
-        <p className={styles.productsTitle}>{product.title}</p>
-        <span className={styles.primaryPrice}>
+        <p
+          className={styles.productsTitle}
+          style={{ color: theme.palette.text.primary }}
+        >
+          {product.title}
+        </p>
+        <span
+          className={styles.primaryPrice}
+          style={{ color: theme.palette.text.primary }}
+        >
           $
           {product.discont_price != null
             ? product.discont_price

@@ -7,7 +7,7 @@ import useShoppingCartStore from "../../zustand/stores/shoppingCart";
 import useProductsStore from "../../zustand/stores/products";
 import useCategoryStore from "../../zustand/stores/categories";
 import styles from "../ProductPage/ProductPage.module.css";
-
+import { useTheme } from "@mui/material/styles";
 const maxShortenedLength = 700;
 
 export default function ProductPage() {
@@ -27,7 +27,7 @@ export default function ProductPage() {
   }, [fetchProductById, productId]);
 
   const product = products.find((p) => p.id === Number(productId));
-
+  const theme = useTheme();
   if (loading) {
     return (
       <section
@@ -113,7 +113,12 @@ export default function ProductPage() {
         <div className={styles.discountPriceCont}>
           <h3>{product.title}</h3>
           <div className={styles.productsContent}>
-            <span className={styles.primaryPrice}>${displayPrice}</span>
+            <span
+              className={styles.primaryPrice}
+              style={{ color: theme.palette.text.primary }}
+            >
+              ${displayPrice}
+            </span>
             {hasDiscount && (
               <>
                 <span className={styles.secondaryPrice}>${product.price}</span>
@@ -147,7 +152,7 @@ export default function ProductPage() {
           {product.description && (
             <div className={styles.description}>
               <h4>Description</h4>
-              <p>
+              <p style={{ color: theme.palette.text.primary }}>
                 {isTextShortened
                   ? formatDescription(product.description)
                   : product.description}
@@ -159,11 +164,11 @@ export default function ProductPage() {
                     background: "transparent",
                     border: "none",
                     fontFamily: "inherit",
-
                     textDecoration: "none",
                     cursor: "pointer",
                     padding: 0,
                     fontSize: "inherit",
+                    color: theme.palette.text.primary,
                   }}
                 >
                   {isTextShortened ? "Read more" : "Read less"}

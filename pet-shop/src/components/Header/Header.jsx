@@ -16,8 +16,9 @@ import styles from "../Header/Header.module.css";
 import logo from "../../assets/header/logo.svg";
 import shopIcon from "../../assets/header/shop-icon.svg";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
-export default function Header() {
+export default function Header({ toggleTheme, mode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const totalCount = useShoppingCartStore((state) =>
@@ -63,8 +64,8 @@ export default function Header() {
               </NavLink>
             ))}
           </Box>
-
           <Box sx={{ display: "flex", alignItems: "center" }}>
+            <ThemeSwitcher toggleTheme={toggleTheme} mode={mode} />
             <Link to="/checkout">
               <Badge
                 badgeContent={totalCount}

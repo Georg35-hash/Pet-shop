@@ -119,8 +119,7 @@ export default function DiscountForm() {
               variant="contained"
               className={styles.salesButton}
               sx={{
-                background: isButtonClicked ? "#000000" : "#0d50ff",
-                "&:hover": { background: "black" },
+                background: isButtonClicked ? "gray" : "#0d50ff",
               }}
             >
               Get a discount

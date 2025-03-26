@@ -8,7 +8,8 @@ import { useMediaQuery } from "@mui/material";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import NavigationButton from "../NavButton/NavButton";
 import LoadingErrorHandler from "../LoadingErrorHandler/LoadingErrorHandler";
-
+import { useTheme } from "@mui/material/styles";
+import { NavLink } from "react-router-dom";
 export default function Products() {
   const [isAnimating, setIsAnimating] = useState(false);
   const { products, loading, error } = useProductStore();
@@ -17,6 +18,8 @@ export default function Products() {
   const [addedToCart, setAddedToCart] = useState({});
   const animationTimeout = useRef(null);
   const push = useShoppingCartStore((state) => state.push);
+
+  const theme = useTheme();
 
   useEffect(() => {
     return () => clearTimeout(animationTimeout.current);
@@ -28,7 +31,7 @@ export default function Products() {
 
   const xs = useMediaQuery("(max-width:600px)");
   const sm = useMediaQuery("(min-width:600px) and (max-width:900px)");
-  const md = useMediaQuery("(min-width:900px) and (max-width:1200px)");
+  const md = useMediaQuery("(max-width:1400px)");
 
   let visibleProSlide = xs ? 1 : sm ? 2 : md ? 3 : 4;
 
@@ -85,65 +88,76 @@ export default function Products() {
                   )
                 )
                 .map((product) => (
-                  <li
-                    className={styles.productsRenderItem}
-                    key={product.id}
-                    onMouseEnter={() =>
-                      setCardHovered((prev) => ({
-                        ...prev,
-                        [product.id]: true,
-                      }))
-                    }
-                    onMouseLeave={() =>
-                      setCardHovered((prev) => ({
-                        ...prev,
-                        [product.id]: false,
-                      }))
-                    }
-                  >
-                    <span className={styles.discountBorder}>
-                      -
-                      {Math.floor(
-                        100 - (product.discont_price * 100) / product.price
-                      )}
-                      %
-                    </span>
-
-                    <button
-                      className={styles.cartButton}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        push(product);
-                        setAddedToCart((prev) => ({
+                  <NavLink to={`/products/${product.id}`} key={product.id}>
+                    <li
+                      className={styles.productsRenderItem}
+                      key={product.id}
+                      onMouseEnter={() =>
+                        setCardHovered((prev) => ({
                           ...prev,
                           [product.id]: true,
-                        }));
-                      }}
-                      style={{
-                        opacity: isCardHovered[product.id] ? 1 : 0,
-                        backgroundColor: addedToCart[product.id]
-                          ? "black"
-                          : "#0d50ff",
-                      }}
+                        }))
+                      }
+                      onMouseLeave={() =>
+                        setCardHovered((prev) => ({
+                          ...prev,
+                          [product.id]: false,
+                        }))
+                      }
                     >
-                      {addedToCart[product.id] ? "Added" : "Add to basket"}
-                    </button>
+                      <span className={styles.discountBorder}>
+                        -
+                        {Math.floor(
+                          100 - (product.discont_price * 100) / product.price
+                        )}
+                        %
+                      </span>
 
-                    <img
-                      className={styles.productsRenderImage}
-                      src={`http://localhost:3333${product.image}`}
-                      alt={product.title}
-                    />
-                    <div className={styles.productsContent}>
-                      <p className={styles.productsTitle}>{product.title}</p>
-                      <span className={styles.primaryPrice}>
-                        ${product.discont_price}
-                      </span>
-                      <span className={styles.secondaryPrice}>
-                        ${product.price}
-                      </span>
-                    </div>
-                  </li>
+                      <button
+                        className={styles.cartButton}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          push(product);
+                          setAddedToCart((prev) => ({
+                            ...prev,
+                            [product.id]: true,
+                          }));
+                        }}
+                        style={{
+                          opacity: isCardHovered[product.id] ? 1 : 0,
+                          backgroundColor: addedToCart[product.id]
+                            ? "black"
+                            : "#0d50ff",
+                        }}
+                      >
+                        {addedToCart[product.id] ? "Added" : "Add to basket"}
+                      </button>
+
+                      <img
+                        className={styles.productsRenderImage}
+                        src={`http://localhost:3333${product.image}`}
+                        alt={product.title}
+                      />
+                      <div className={styles.productsContent}>
+                        <p
+                          className={styles.productsTitle}
+                          style={{ color: theme.palette.text.primary }}
+                        >
+                          {product.title}
+                        </p>
+
+                        <span
+                          className={styles.primaryPrice}
+                          style={{ color: theme.palette.text.primary }}
+                        >
+                          ${product.discont_price}
+                        </span>
+                        <span className={styles.secondaryPrice}>
+                          ${product.price}
+                        </span>
+                      </div>
+                    </li>
+                  </NavLink>
                 ))}
             </ul>
 

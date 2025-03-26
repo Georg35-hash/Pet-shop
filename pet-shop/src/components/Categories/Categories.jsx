@@ -8,11 +8,11 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import NavigationButton from "../NavButton/NavButton";
 import { NavLink } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
-
+import { useTheme } from "@mui/material/styles";
 export default function Categories() {
   const { categories, loading, error } = useCategoryStore();
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const theme = useTheme();
   const xs = useMediaQuery("(max-width:600px)");
   const sm = useMediaQuery("(min-width:600px) and (max-width:900px)");
   const md = useMediaQuery("(min-width:900px) and (max-width:1200px)");
@@ -58,7 +58,12 @@ export default function Categories() {
                         src={`http://localhost:3333${category.image}`}
                         alt={category.title}
                       />
-                      <p className={styles.categoriesDesc}>{category.title}</p>
+                      <p
+                        className={styles.categoriesDesc}
+                        style={{ color: theme.palette.text.primary }}
+                      >
+                        {category.title}
+                      </p>
                     </li>
                   </NavLink>
                 ))}

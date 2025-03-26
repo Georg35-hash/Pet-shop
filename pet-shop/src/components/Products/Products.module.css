@@ -17,6 +17,7 @@
 }
 
 .productsRenderItem {
+  padding: 0;
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -29,11 +30,10 @@
 }
 
 .productsRenderImage {
-  border-bottom: 1px solid #ddd;
-  width: 316px;
-  height: auto;
+  width: 100%;
+  height: 284px;
   object-fit: cover;
-  height: 284px; /* Ограничивает максимальную высоту */
+  display: block;
 }
 
 .productsTitle {

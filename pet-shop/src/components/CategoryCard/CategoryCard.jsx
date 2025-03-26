@@ -1,6 +1,8 @@
 import styles from "./CategoryCard.module.css";
+import { useTheme } from "@mui/material/styles";
 
 export default function CategoryCard({ category }) {
+  const theme = useTheme();
   return (
     <div style={{ display: "flex" }}>
       <div className={styles.cardItem}>
@@ -9,7 +11,9 @@ export default function CategoryCard({ category }) {
             src={`http://localhost:3333/${category.image}`}
             alt={category.title}
           />
-          <span>{category.title}</span>
+          <span style={{ color: theme.palette.text.primary }}>
+            {category.title}
+          </span>
         </a>
       </div>
     </div>
