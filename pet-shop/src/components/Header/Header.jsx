@@ -9,6 +9,7 @@ import {
   List,
   ListItem,
   Box,
+  Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -17,7 +18,7 @@ import logo from "../../assets/header/logo.svg";
 import shopIcon from "../../assets/header/shop-icon.svg";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
-import useThemeMode from "../../hooks/useThemeMode";
+import { useTheme } from "@mui/material/styles";
 
 export default function Header({ toggleTheme, mode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -27,7 +28,9 @@ export default function Header({ toggleTheme, mode }) {
       0
     )
   );
-  const { theme } = useThemeMode();
+
+  const theme = useTheme();
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -73,11 +76,11 @@ export default function Header({ toggleTheme, mode }) {
                 to={link.path}
                 className={styles.navLink}
                 style={{
-                  color: theme.palette.text.links,
-                  textDecoration: "none",
+                  color: theme.palette.mode === "light" ? "#000000" : "#ffffff",
+                  transition: "color 0.3s ease",
                 }}
               >
-                {link.label}
+                <Typography variant="body1">{link.label}</Typography>
               </NavLink>
             ))}
           </Box>
@@ -132,7 +135,7 @@ export default function Header({ toggleTheme, mode }) {
         sx={{
           "& .MuiDrawer-paper": {
             width: 250,
-            backgroundColor: "white",
+            backgroundColor: theme.palette.background.default,
             padding: "20px",
           },
         }}
@@ -149,10 +152,25 @@ export default function Header({ toggleTheme, mode }) {
             <ListItem
               key={link.path}
               onClick={handleDrawerToggle}
-              sx={{ display: "block", textAlign: "center" }}
+              sx={{
+                display: "block",
+                textAlign: "center",
+              }}
             >
               <NavLink to={link.path} className={styles.navLink}>
-                {link.label}
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color:
+                      theme.palette.mode === "light" ? "#000000" : "#ffffff",
+                    transition: "color 0.3s ease",
+                    "&:hover": {
+                      color: "#0d50ff",
+                    },
+                  }}
+                >
+                  {link.label}
+                </Typography>
               </NavLink>
             </ListItem>
           ))}

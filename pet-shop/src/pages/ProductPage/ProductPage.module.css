@@ -146,3 +146,14 @@
     margin-top: 12px;
   }
 }
+
+@media (max-width: 600px) {
+  .productSection {
+    padding: 20px;
+  }
+
+  .productSection > img {
+    width: 100%;
+    height: auto;
+  }
+}

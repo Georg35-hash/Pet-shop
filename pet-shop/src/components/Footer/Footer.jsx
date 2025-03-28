@@ -2,12 +2,12 @@ import { Box, Grid, Typography, Paper, IconButton } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import instagram from "../../assets/footer/instagram.svg";
 import whatsapp from "../../assets/footer/whatsapp.svg";
-
+import styles from "../Footer/Footer.module.css";
 export default function Footer() {
   const theme = useTheme();
 
   return (
-    <footer>
+    <footer className={styles.footer}>
       <Box
         sx={{
           margin: "106px 0 80px 0",

@@ -90,13 +90,20 @@ export default function CheckOut() {
     <main>
       <section className={styles.shoppingCart}>
         <div className={styles.titleBox}>
-          <SectionTitle content="Shopping Cart" style={{ maxWidth: "440px" }} />
+          <div className={styles.titleWrapper}>
+            <SectionTitle
+              content="Shopping Cart"
+              style={{ maxWidth: "440px" }}
+            />
+          </div>
+
           <span className={styles.titleLine}></span>
           <Notifi
             notification={notification}
             setNotification={setNotification}
             onClose={() => clear()}
           />
+
           <NavigationButton
             text="Back to the store"
             style={{ maxWidth: 160 }}

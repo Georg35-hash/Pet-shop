@@ -1,13 +1,11 @@
-.navLink {
-  text-decoration: none;
-  color: black;
-  font-size: 18px;
-  font-weight: 500;
-  transition: color 0.3s ease-in-out;
+/* styles.module.css */
+.link {
+  color: var(--link-color);
+  transition: color 0.3s ease;
 }
 
-.navLink:hover {
-  color: #0d50ff;
+.linkHover:hover {
+  color: var(--link-hover-color);
 }
 
 .icons {

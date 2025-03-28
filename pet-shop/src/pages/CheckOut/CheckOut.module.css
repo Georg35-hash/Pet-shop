@@ -1,9 +1,13 @@
 .shoppingCart {
-  padding: 0 40px;
+  padding: 0 15px;
 }
 
 .cartsContainer {
   display: flex;
+}
+
+.titleWrapper {
+  max-width: 360px;
 }
 
 .titleBox {
@@ -22,7 +26,7 @@
 
 .titleLine {
   border-bottom: 1px solid #dddddd;
-  width: 628px;
+  width: 100%;
   margin-left: 2%;
 }
 
@@ -41,10 +45,12 @@
 .buttonBack:hover {
   background: #f1f3f4;
 }
+
 .cartContainerWrap {
   justify-content: space-between;
   width: 100%;
 }
+
 .shoppingCartNavi {
   width: clamp(270px, 20vw, 313px);
   height: 58px;
@@ -62,9 +68,11 @@
   align-items: center;
   white-space: nowrap;
 }
+
 .shoppingCartNavi:hover {
   color: #ffffff;
 }
+
 .cartPageContinueBtn {
   width: clamp(270px, 20vw, 313px);
   height: 58px;
@@ -94,6 +102,7 @@
   text-decoration: line-through;
   margin-left: 16px;
 }
+
 .cartPageItemsBox {
   display: flex;
   gap: 16px;
@@ -110,6 +119,7 @@
   border-radius: 12px;
   overflow: hidden;
   transition: ease-in-out 500ms;
+  width: 100%;
 }
 
 .cartPageItem:hover {
@@ -134,6 +144,7 @@
   width: 100%;
   max-width: 401vw;
   justify-content: space-between;
+  min-width: 0; /* Для корректного сжатия */
 }
 
 .cartPageItemInfoLeft {
@@ -141,10 +152,13 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 32px 0 32px 32px;
+  min-width: 0; /* Чтобы flex-элементы не выходили за пределы */
 }
 
 .cartPageItemInfoLeft h4 {
   width: 100%;
+  max-width: 500px;
+  min-width: 0; /* Обеспечивает корректное сжатие */
   font-size: clamp(13px, 1.6vw, 20px);
   font-weight: 500;
   line-height: 26px;
@@ -198,7 +212,6 @@
 
 .cartPageItemInfoLeftPricePrice {
   display: flex;
-
   align-items: center;
   gap: 16px;
 }
@@ -255,11 +268,13 @@
 .cartPageItemsBoxRight {
   width: 100%;
 }
+
 .delButtonCont {
   display: flex;
   align-items: center;
   padding: 32px;
 }
+
 .deleteButton {
   width: 20px;
   height: 20px;
@@ -272,9 +287,18 @@
     justify-content: center;
     flex-direction: column;
   }
+
   .cartPageItemsBox {
     display: flex;
     max-width: 100%;
     justify-content: center;
+  }
+
+  .cartPageItem {
+    width: 100%;
+  }
+
+  .cartPageItemInfoLeft h4 {
+    font-size: clamp(12px, 4vw, 18px); /* Меньше шрифт на мобильных */
   }
 }
