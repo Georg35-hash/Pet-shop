@@ -6,11 +6,26 @@ export default function AnimationProvider({ children, threshold = 0.02 }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setLoaded(true); // Устанавливаем флаг, когда компоненты загружены
+    setLoaded(true);
 
+    const observerConfig = { childList: true, subtree: true };
+    const domObserver = new MutationObserver(() => {
+      initAnimations();
+    });
+
+    domObserver.observe(document.body, observerConfig);
+    initAnimations();
+
+    return () => domObserver.disconnect();
+  }, [location.pathname, threshold]);
+
+  function initAnimations() {
     const elements = document.querySelectorAll(".hidden");
+    console.log("Обновление: найдено hidden элементов:", elements.length);
 
-    const observer = new IntersectionObserver(
+    if (elements.length === 0) return;
+
+    const intersectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -23,12 +38,12 @@ export default function AnimationProvider({ children, threshold = 0.02 }) {
       { threshold }
     );
 
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => intersectionObserver.observe(el));
 
     return () => {
-      elements.forEach((el) => observer.unobserve(el));
+      elements.forEach((el) => intersectionObserver.unobserve(el));
     };
-  }, [location.pathname, threshold]);
+  }
 
   return <>{loaded && children}</>;
 }

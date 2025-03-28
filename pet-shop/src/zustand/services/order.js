@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3333/order/send";
+const API_URL = "https://pet-shop-backend-0fzb.onrender.com/order/send";
 
 const sendRequest = async (user, products = []) => {
   try {

@@ -1,19 +1,17 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3333/products";
+const API_URL = "https://pet-shop-backend-0fzb.onrender.com/products";
 
 export const get = async () => {
   try {
     const response = await axios.get(`${API_URL}/all`);
     return response.data;
-  } 
-  catch (error) {
+  } catch (error) {
     throw new Error(
       error.response ? error.response.data.message : "Network error"
     );
   }
 };
-
 
 export const getById = async (id) => {
   try {

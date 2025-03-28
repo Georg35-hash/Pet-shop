@@ -17,17 +17,17 @@ import logo from "../../assets/header/logo.svg";
 import shopIcon from "../../assets/header/shop-icon.svg";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import useThemeMode from "../../hooks/useThemeMode";
 
 export default function Header({ toggleTheme, mode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-
   const totalCount = useShoppingCartStore((state) =>
     Object.values(state.products).reduce(
       (total, product) => total + product.count,
       0
     )
   );
-
+  const { theme } = useThemeMode();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -42,23 +42,40 @@ export default function Header({ toggleTheme, mode }) {
   return (
     <>
       <AppBar
+        variant="elevation"
         position="fixed"
-        sx={{
+        sx={(theme) => ({
           padding: "10px 0 0 0",
-          backgroundColor: "white",
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-        }}
+          background: theme.palette.background.default,
+        })}
       >
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            margin: "0 auto",
+            maxWidth: "1440px",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
           <NavLink to="/">
             <img className={styles.icons} src={logo} alt="logo" />
           </NavLink>
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3 }}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              gap: 3,
+            }}
+          >
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
                 className={styles.navLink}
+                style={{
+                  color: theme.palette.text.links,
+                  textDecoration: "none",
+                }}
               >
                 {link.label}
               </NavLink>
@@ -73,7 +90,6 @@ export default function Header({ toggleTheme, mode }) {
                 sx={{
                   "& .MuiBadge-badge": {
                     backgroundColor: "#0D50FF",
-                    color: "white",
                     fontSize: "14px",
                     top: 15,
                     right: 36,
@@ -83,10 +99,16 @@ export default function Header({ toggleTheme, mode }) {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    color: "white",
                   },
                 }}
               >
-                <img className={styles.icons} src={shopIcon} alt="shopIcon" />
+                <img
+                  className={styles.icons}
+                  style={{ color: theme.palette.text.secondary }}
+                  src={shopIcon}
+                  alt="shopIcon"
+                />
               </Badge>
             </Link>
             <IconButton

@@ -16,11 +16,17 @@ export default function useThemeMode() {
           ...(mode === "dark"
             ? {
                 background: { default: "#121212", paper: "#1E1E1E" },
-                text: { primary: "#ffffff", secondary: "#000000" },
+                text: {
+                  primary: "#ffffff",
+                  secondary: "#000000",
+                },
               }
             : {
                 background: { default: "#ffffff", paper: "#f5f5f5" },
-                text: { primary: "#000000", secondary: "#000000" },
+                text: {
+                  primary: "#000000",
+                  secondary: "#000000",
+                },
               }),
         },
       }),

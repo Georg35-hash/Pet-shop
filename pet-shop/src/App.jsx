@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import Footer from "../src/components/Footer/Footer";
 import Header from "../src/components/Header/Header";
-import Home from "../src/pages/Home";
+import Home from "./pages/Home/Home";
 import CheckOut from "../src/pages/CheckOut/CheckOut";
 import CategoriesPage from "../src/pages/AllCategoriesPage/AllCategories";
 import AllProducts from "../src/pages/AllProducts/AllProducts";
@@ -32,8 +32,8 @@ export default function App() {
 
   return (
     <Router>
-      <AnimationProvider threshold={0.02}>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <AnimationProvider threshold={0.01}>
           <Box sx={{ margin: "0 auto", maxWidth: "1440px" }}>
             <CssBaseline />
             <Header toggleTheme={toggleTheme} mode={mode} />
@@ -49,8 +49,8 @@ export default function App() {
             </Routes>
             <Footer />
           </Box>
-        </ThemeProvider>
-      </AnimationProvider>
+        </AnimationProvider>
+      </ThemeProvider>
     </Router>
   );
 }
