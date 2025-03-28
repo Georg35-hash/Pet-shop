@@ -32,8 +32,17 @@ const useCategoryStore = create(
           }
         },
 
-        fetchCategoryByID: (id) => {
-          return get().categories.find((category) => category.id === id);
+        fetchCategoryByID: async (id) => {
+          let category = get().categories.find(
+            (category) => category.id === id
+          );
+
+          if (!category) {
+            await get().fetchCategories(); // Load categories
+            category = get().categories.find((category) => category.id === id);
+          }
+
+          return category;
         },
       }))
     ),
