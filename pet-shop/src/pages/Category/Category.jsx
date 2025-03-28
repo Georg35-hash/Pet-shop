@@ -19,6 +19,8 @@ export default function Category() {
 
   const category = categoryById(Number(categoryId));
   const productsByCategory = byCategory(categoryId);
+  console.log("categoryId:", categoryId);
+  console.log("category from store:", categoryById(Number(categoryId)));
 
   return (
     <main>
