@@ -59,7 +59,7 @@ export default function ProductCard({ product }) {
       </button>
       <img
         className={styles.cardImage}
-        src={`http://localhost:3333/${product.image}`}
+        src={`https://pet-shop-backend-0fzb.onrender.com${product.image}`}
         width="316"
         height="284"
         alt={product.title}

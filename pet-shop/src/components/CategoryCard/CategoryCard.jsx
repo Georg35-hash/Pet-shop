@@ -8,7 +8,7 @@ export default function CategoryCard({ category }) {
       <div className={styles.cardItem}>
         <a href={`/categories/${category.id}`}>
           <img
-            src={`http://localhost:3333/${category.image}`}
+            src={`https://pet-shop-backend-0fzb.onrender.com${category.image}`}
             alt={category.title}
           />
           <span style={{ color: theme.palette.text.primary }}>

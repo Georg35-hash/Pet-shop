@@ -21,7 +21,10 @@ const CartItem = ({
 }) => (
   <li key={product.id} className={styles.cartPageItem}>
     <div className={styles.cartPageItemImg}>
-      <img src={`http://localhost:3333${product.image}`} alt={product.title} />
+      <img
+        src={`https://pet-shop-backend-0fzb.onrender.com${product.image}`}
+        alt={product.title}
+      />
     </div>
     <div className={styles.cartPageItemInfo}>
       <div className={styles.cartPageItemInfoLeft}>

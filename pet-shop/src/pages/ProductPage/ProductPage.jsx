@@ -106,7 +106,7 @@ export default function ProductPage() {
       <section className={styles.productSection}>
         {product.image && (
           <img
-            src={`http://localhost:3333/${product.image}`}
+            src={`https://pet-shop-backend-0fzb.onrender.com${product.image}`}
             alt={product.title}
           />
         )}

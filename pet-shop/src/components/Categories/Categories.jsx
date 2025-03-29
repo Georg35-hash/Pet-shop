@@ -55,7 +55,7 @@ export default function Categories() {
                     <li className={styles.categoriesRenderItem}>
                       <img
                         className={styles.categoriesRenderImage}
-                        src={`http://localhost:3333${category.image}`}
+                        src={`https://pet-shop-backend-0fzb.onrender.com${category.image}`}
                         alt={category.title}
                       />
                       <p
