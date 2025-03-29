@@ -136,7 +136,7 @@ export default function Header({ toggleTheme, mode }) {
         sx={{
           "& .MuiDrawer-paper": {
             width: 250,
-            backgroundColor: theme.palette.background.default,
+            color: theme.palette.text.primary,
             padding: "20px",
           },
         }}

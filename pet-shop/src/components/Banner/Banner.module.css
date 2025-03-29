@@ -41,8 +41,6 @@
 @media (max-width: 1110px) {
   .bannerDescription {
     max-width: 90vw;
-  }
-  .backgroundVideo {
     padding-top: 60px;
   }
 }
