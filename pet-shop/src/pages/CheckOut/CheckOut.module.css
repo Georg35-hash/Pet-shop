@@ -144,7 +144,7 @@
   width: 100%;
   max-width: 401vw;
   justify-content: space-between;
-  min-width: 0; /* Для корректного сжатия */
+  min-width: 0;
 }
 
 .cartPageItemInfoLeft {
@@ -152,13 +152,13 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 32px 0 32px 32px;
-  min-width: 0; /* Чтобы flex-элементы не выходили за пределы */
+  min-width: 0;
 }
 
 .cartPageItemInfoLeft h4 {
   width: 100%;
   max-width: 500px;
-  min-width: 0; /* Обеспечивает корректное сжатие */
+  min-width: 0;
   font-size: clamp(13px, 1.6vw, 20px);
   font-weight: 500;
   line-height: 26px;
@@ -299,6 +299,11 @@
   }
 
   .cartPageItemInfoLeft h4 {
-    font-size: clamp(12px, 4vw, 18px); /* Меньше шрифт на мобильных */
+    font-size: clamp(12px, 4vw, 18px);
+  }
+  .delButtonCont {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
   }
 }
