@@ -110,7 +110,7 @@ export default function Header({ toggleTheme, mode }) {
                   sx={{
                     fontSize: 55,
                     color: theme.palette.text.primary,
-                    strokeWidth: 0.5,
+                    strokeWidth: 0.1,
                   }}
                 />
               </Badge>
