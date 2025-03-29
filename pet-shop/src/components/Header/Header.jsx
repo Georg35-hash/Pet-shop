@@ -120,10 +120,14 @@ export default function Header({ toggleTheme, mode }) {
               edge="end"
               color="inherit"
               aria-label="menu"
-              sx={{ display: { md: "none" }, ml: 2 }}
+              sx={{
+                display: { md: "none" },
+                ml: 2,
+                color: theme.palette.text.primary, // Устанавливаем цвет в зависимости от темы
+              }}
               onClick={handleDrawerToggle}
             >
-              <MenuIcon sx={{ color: "black", fontSize: 28 }} />
+              <MenuIcon sx={{ fontSize: 28 }} />
             </IconButton>
           </Box>
         </Toolbar>
