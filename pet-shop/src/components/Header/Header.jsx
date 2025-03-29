@@ -129,7 +129,6 @@ export default function Header({ toggleTheme, mode }) {
         </Toolbar>
       </AppBar>
       <Box sx={{ height: "64px" }} />
-
       <Drawer
         anchor="right"
         open={mobileOpen}
