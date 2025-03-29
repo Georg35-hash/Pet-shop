@@ -108,7 +108,7 @@ export default function Header({ toggleTheme, mode }) {
               >
                 <ShoppingBagOutlinedIcon
                   sx={{
-                    fontSize: 45,
+                    fontSize: 55,
                     color: theme.palette.text.primary,
                   }}
                 />
