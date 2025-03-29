@@ -116,14 +116,12 @@ export default function Products() {
                             ...prev,
                             [product.id]: true,
                           }));
-
-                          // Устанавливаем таймер для сброса состояния через 3 секунды
                           setTimeout(() => {
                             setAddedToCart((prev) => ({
                               ...prev,
                               [product.id]: false,
                             }));
-                          }, 3000); // 3000 мс = 3 секунды
+                          }, 3000);
                         }}
                         style={{
                           opacity: isCardHovered[product.id] ? 1 : 0,

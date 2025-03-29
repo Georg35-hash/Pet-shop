@@ -75,18 +75,10 @@
 }
 
 .coupleSliderWrapper svg {
-  position: absolute;
   top: 60%;
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 10;
-}
-.coupleSliderWrapper svg:first-child {
-  left: 0;
-}
-
-.coupleSliderWrapper svg:last-child {
-  right: 0;
 }
 .coupleSliderWrapper {
   max-width: 100%;
