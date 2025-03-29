@@ -12,10 +12,10 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 import styles from "../Header/Header.module.css";
 import logo from "../../assets/header/logo.svg";
-import shopIcon from "../../assets/header/shop-icon.svg";
 import useShoppingCartStore from "../../zustand/stores/shoppingCart";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import { useTheme } from "@mui/material/styles";
@@ -47,10 +47,10 @@ export default function Header({ toggleTheme, mode }) {
       <AppBar
         variant="elevation"
         position="fixed"
-        sx={(theme) => ({
+        sx={{
           padding: "10px 0 0 0",
           background: theme.palette.background.default,
-        })}
+        }}
       >
         <Toolbar
           sx={{
@@ -95,7 +95,7 @@ export default function Header({ toggleTheme, mode }) {
                     backgroundColor: "#0D50FF",
                     fontSize: "14px",
                     top: 15,
-                    right: 36,
+                    right: 10,
                     width: 24,
                     height: 24,
                     borderRadius: "50%",
@@ -106,13 +106,11 @@ export default function Header({ toggleTheme, mode }) {
                   },
                 }}
               >
-                <img
-                  className={styles.icons}
-                  style={{
+                <ShoppingBagOutlinedIcon
+                  sx={{
+                    fontSize: 32,
                     color: theme.palette.text.primary,
                   }}
-                  src={shopIcon}
-                  alt="shopIcon"
                 />
               </Badge>
             </Link>
@@ -123,7 +121,7 @@ export default function Header({ toggleTheme, mode }) {
               sx={{
                 display: { md: "none" },
                 ml: 2,
-                color: theme.palette.text.primary, // Устанавливаем цвет в зависимости от темы
+                color: theme.palette.text.primary,
               }}
               onClick={handleDrawerToggle}
             >
