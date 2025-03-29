@@ -108,7 +108,9 @@ export default function Header({ toggleTheme, mode }) {
               >
                 <img
                   className={styles.icons}
-                  style={{ color: theme.palette.text.secondary }}
+                  style={{
+                    color: theme.palette.text.primary,
+                  }}
                   src={shopIcon}
                   alt="shopIcon"
                 />
