@@ -28,7 +28,7 @@ export default function useThemeMode() {
                   secondary: "#000000",
                 },
                 links: {
-                  primary: "#0d50ff", // Link color in light mode
+                  primary: "#0d50ff",
                 },
               }),
         },

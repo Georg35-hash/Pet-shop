@@ -1,5 +1,5 @@
 import { CircularProgress } from "@mui/material";
-import styles from "../LoadingErrorHandler/LoadingErrorHandler.module.css"; // Можете создать свой файл стилей
+import styles from "../LoadingErrorHandler/LoadingErrorHandler.module.css";
 
 const LoadingErrorHandler = ({ loading, error }) => {
   if (loading)

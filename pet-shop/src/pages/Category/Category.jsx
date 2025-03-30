@@ -5,7 +5,7 @@ import useCategoryStore from "../../zustand/stores/categories.js";
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
 import SectionTitle from "../../components/SectionTitle/SectionTitle.jsx";
 import NavigationRow from "../../components/NavRow/NavRow.jsx";
-import LoadingErrorHandler from "../../components/LoadingErrorHandler/LoadingErrorHandler"; // Импортируем компонент
+import LoadingErrorHandler from "../../components/LoadingErrorHandler/LoadingErrorHandler";
 
 export default function Category() {
   const { categoryId } = useParams();
