@@ -21,8 +21,6 @@ export default function AnimationProvider({ children, threshold = 0.02 }) {
 
   function initAnimations() {
     const elements = document.querySelectorAll(".hidden");
-    console.log("Обновление: найдено hidden элементов:", elements.length);
-
     if (elements.length === 0) return;
 
     const intersectionObserver = new IntersectionObserver(
