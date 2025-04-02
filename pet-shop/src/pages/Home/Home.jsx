@@ -6,12 +6,14 @@ import LoadingErrorHandler from "../../components/LoadingErrorHandler/LoadingErr
 import useCategoryStore from "../../zustand/stores/categories";
 
 export default function Home() {
-  const { loading, error } = useCategoryStore();
+  const { loading, error, categories } = useCategoryStore();
+
+  const isDataFetching = loading || (categories.length === 0 && !error);
 
   return (
     <main>
-      <LoadingErrorHandler loading={loading} error={error} />
-      {!loading && !error && (
+      <LoadingErrorHandler loading={isDataFetching} error={error} />
+      {!isDataFetching && (
         <>
           <Banner />
           <Categories />
