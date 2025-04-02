@@ -8,8 +8,9 @@ import NavigationButton from "../NavButton/NavButton";
 import { NavLink } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import LoadingErrorHandler from "../../components/LoadingErrorHandler/LoadingErrorHandler";
 export default function Categories() {
-  const { categories } = useCategoryStore();
+  const { categories, loading, error } = useCategoryStore();
   const [activeIndex, setActiveIndex] = useState(0);
   const theme = useTheme();
   const xs = useMediaQuery("(max-width:600px)");
@@ -30,43 +31,48 @@ export default function Categories() {
 
   return (
     <section className={styles.coupleSection}>
-      <div className={styles.coupleContainer}>
-        <SectionTitle content="Categories" />
-        <span className={styles.coupleLine}></span>
-        <NavigationButton
-          text="All categories"
-          style={{ maxWidth: 140 }}
-          route="/categories"
-        />
-      </div>
+      <LoadingErrorHandler loading={loading} error={error} />
+      {!loading && !error && (
+        <>
+          <div className={styles.coupleContainer}>
+            <SectionTitle content="Categories" />
+            <span className={styles.coupleLine}></span>
+            <NavigationButton
+              text="All categories"
+              style={{ maxWidth: 140 }}
+              route="/categories"
+            />
+          </div>
 
-      <div className={styles.coupleSliderWrapper}>
-        <KeyboardArrowLeft onClick={prevSlide} />
+          <div className={styles.coupleSliderWrapper}>
+            <KeyboardArrowLeft onClick={prevSlide} />
 
-        <ul className={styles.coupleRenderList}>
-          {categories
-            .slice(activeIndex, activeIndex + visibleCatSlide)
-            .map((category) => (
-              <NavLink to="/categories" key={category.id}>
-                <li className={styles.categoriesRenderItem}>
-                  <img
-                    className={styles.categoriesRenderImage}
-                    src={`https://pet-shop-backend-0fzb.onrender.com${category.image}`}
-                    alt={category.title}
-                  />
-                  <p
-                    className={styles.categoriesDesc}
-                    style={{ color: theme.palette.text.primary }}
-                  >
-                    {category.title}
-                  </p>
-                </li>
-              </NavLink>
-            ))}
-        </ul>
+            <ul className={styles.coupleRenderList}>
+              {categories
+                .slice(activeIndex, activeIndex + visibleCatSlide)
+                .map((category) => (
+                  <NavLink to="/categories" key={category.id}>
+                    <li className={styles.categoriesRenderItem}>
+                      <img
+                        className={styles.categoriesRenderImage}
+                        src={`https://pet-shop-backend-0fzb.onrender.com${category.image}`}
+                        alt={category.title}
+                      />
+                      <p
+                        className={styles.categoriesDesc}
+                        style={{ color: theme.palette.text.primary }}
+                      >
+                        {category.title}
+                      </p>
+                    </li>
+                  </NavLink>
+                ))}
+            </ul>
 
-        <KeyboardArrowRight onClick={nextSlide} />
-      </div>
+            <KeyboardArrowRight onClick={nextSlide} />
+          </div>
+        </>
+      )}
     </section>
   );
 }
