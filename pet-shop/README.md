@@ -20,9 +20,3 @@ The frontend is built with React and deployed on Vercel, while the backend uses 
 - Node.js
 - Express
 
-## 📦 Installation
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/your-username/pet-shop.git
-
