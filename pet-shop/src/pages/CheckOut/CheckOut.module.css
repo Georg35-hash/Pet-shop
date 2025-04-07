@@ -96,7 +96,7 @@
 }
 
 .secondaryPrice {
-  font-size: 20px;
+  font-size: clamp(15px, 2.8vw, 20px);
   color: #8b8b8b;
   font-weight: 500;
   text-decoration: line-through;
@@ -217,7 +217,7 @@
 }
 
 .discountPrice {
-  font-size: clamp(25px, 3.8vw, 40px);
+  font-size: clamp(20px, 2.8vw, 40px);
   font-weight: 600;
   line-height: 44px;
   text-align: left;
