@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../Categories/Categories.module.css";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
@@ -18,6 +18,12 @@ export default function Categories() {
   const md = useMediaQuery("(min-width:900px) and (max-width:1200px)");
 
   const visibleCatSlide = xs ? 1 : sm ? 2 : md ? 3 : 4;
+
+  useEffect(() => {
+    if (categories.length === 0 && !loading && !error) {
+      useCategoryStore.getState().fetchCategories();
+    }
+  }, []);
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + visibleCatSlide) % categories.length);
