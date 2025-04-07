@@ -20,6 +20,9 @@ const useCategoryStore = create(
 
           try {
             const categories = await fetchAllCategories();
+            if (!Array.isArray(categories) || categories.length === 0) {
+              throw new Error("No categories received");
+            }
             set((state) => {
               state.categories = categories;
               state.loading = false;

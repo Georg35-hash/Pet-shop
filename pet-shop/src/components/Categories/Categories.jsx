@@ -31,8 +31,11 @@ export default function Categories() {
 
   return (
     <section className={styles.coupleSection}>
-      <LoadingErrorHandler loading={loading} error={error} />
-      {!loading && !error && (
+      <LoadingErrorHandler
+        loading={loading || categories.length === 0}
+        error={error}
+      />
+      {!loading && !error && categories.length > 0 && (
         <>
           <div className={styles.coupleContainer}>
             <SectionTitle content="Categories" />
